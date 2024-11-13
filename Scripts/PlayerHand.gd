@@ -2,8 +2,8 @@ extends Node2D
 
 const HAND_COUNT = 3
 const CARD_SCENE_PATH = "res://scenes/card.tscn"
-const CARD_WIDTH = 70
-const  HAND_Y_POSITION = 890
+const CARD_WIDTH = 100
+const HAND_Y_POSITION = 890
 const DEFAULT_CARD_SPEED = 0.1
 
 
@@ -13,9 +13,9 @@ var center_screen_x
 
 func _ready() -> void:
 	center_screen_x = get_viewport().size.x / 2
-	var card_scene = preload(CARD_SCENE_PATH)
-	for i in range(HAND_COUNT):
-		$"../Deck".draw_card()
+	#var card_scene = preload(CARD_SCENE_PATH)
+	#for i in range(HAND_COUNT):
+		#$"../Deck".draw_card()
 		#var new_card = card_scene.instantiate()
 		#$"../CardManager".add_child(new_card)
 		#new_card.name = "card"
