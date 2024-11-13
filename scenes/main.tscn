@@ -14,22 +14,22 @@
 script = ExtResource("1_tytiv")
 
 [node name="CardSlot" parent="." instance=ExtResource("2_o7dgm")]
-position = Vector2(289, 526)
+position = Vector2(687, 645)
 
 [node name="CardSlot2" parent="." instance=ExtResource("2_o7dgm")]
-position = Vector2(460, 526)
+position = Vector2(858, 645)
 
 [node name="CardSlot3" parent="." instance=ExtResource("2_o7dgm")]
-position = Vector2(636, 526)
+position = Vector2(1034, 645)
 
 [node name="computer_card_slot" parent="." instance=ExtResource("3_yobok")]
-position = Vector2(289, 307)
+position = Vector2(687, 426)
 
 [node name="computer_card_slot2" parent="." instance=ExtResource("3_yobok")]
-position = Vector2(459, 309)
+position = Vector2(857, 428)
 
 [node name="computer_card_slot3" parent="." instance=ExtResource("3_yobok")]
-position = Vector2(637, 312)
+position = Vector2(1035, 431)
 
 [node name="PlayerHand" type="Node2D" parent="."]
 script = ExtResource("4_di7y8")
@@ -38,16 +38,16 @@ script = ExtResource("4_di7y8")
 script = ExtResource("5_tipi8")
 
 [node name="Deck" parent="." instance=ExtResource("6_j3inb")]
-position = Vector2(844, 420)
+position = Vector2(1242, 539)
 
 [node name="InputManager" type="Node2D" parent="."]
 script = ExtResource("7_7fywe")
 
 [node name="Trade" type="Button" parent="InputManager"]
-offset_left = 772.0
-offset_top = 535.0
-offset_right = 921.0
-offset_bottom = 572.0
+offset_left = 1170.0
+offset_top = 654.0
+offset_right = 1319.0
+offset_bottom = 691.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="InputManager/Trade"]
 layout_mode = 0
@@ -59,10 +59,10 @@ mouse_filter = 2
 text = "Trade"
 
 [node name="Keep" type="Button" parent="InputManager"]
-offset_left = 772.0
-offset_top = 585.0
-offset_right = 921.0
-offset_bottom = 622.0
+offset_left = 1170.0
+offset_top = 704.0
+offset_right = 1319.0
+offset_bottom = 741.0
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="InputManager/Keep"]
 layout_mode = 0
@@ -74,10 +74,10 @@ mouse_filter = 2
 text = "Keep"
 
 [node name="peek_text" type="RichTextLabel" parent="."]
-offset_left = 398.0
-offset_top = 410.0
-offset_right = 519.0
-offset_bottom = 434.0
+offset_left = 796.0
+offset_top = 529.0
+offset_right = 917.0
+offset_bottom = 553.0
 
 [connection signal="pressed" from="InputManager/Trade" to="InputManager" method="_on_trade_pressed"]
 [connection signal="pressed" from="InputManager/Keep" to="InputManager" method="_on_keep_pressed"]

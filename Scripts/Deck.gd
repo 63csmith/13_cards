@@ -1,7 +1,7 @@
 extends Node2D
 
 const CARD_SCENE_PATH = "res://scenes/card.tscn"
-const CARD_DRAW_SPEED = 0.2
+const CARD_DRAW_SPEED = 1
 
 var player_deck = [
 	"2_of_spades", "2_of_hearts", "2_of_diamonds", "2_of_clubs",
