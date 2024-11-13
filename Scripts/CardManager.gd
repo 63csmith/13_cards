@@ -34,10 +34,10 @@ func _process(delta: float) -> void:
 			#
 func start_drag(card):
 	card_being_dragged = card
-	card.scale = Vector2(1.1, 1.1)
+	card.scale = Vector2(1, 1)
 	
 func finish_drag():
-	card_being_dragged.scale = Vector2(1, 1)
+	card_being_dragged.scale = Vector2(1.1, 1.1)
 	var card_slot_found = check_for_card_slot()
 	if card_slot_found and not card_slot_found.card_in_slot:
 		player_hand_reference.remove_card_from_hand(card_being_dragged)

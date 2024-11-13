@@ -1,3 +1,6 @@
 res://Scripts/main.tscn
 res://scenes/card.tscn
 res://scenes/card_slot.tscn
+res://Scripts/Deck.gd
+res://Scripts/PlayerHand.gd
+res://Scripts/CardManager.gd
