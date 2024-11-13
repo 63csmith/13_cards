@@ -5,3 +5,10 @@ res://Scripts/Deck.gd
 res://Scripts/PlayerHand.gd
 res://Scripts/CardManager.gd
 res://Scripts/card_DB.gd
+res://Scripts/InputManager.gd
+res://Scripts/computer_card_slot.gd
+res://scenes/computer_card_slot.tscn
+res://Scripts/card_slot.gd
+res://scenes/main.tscn
+res://scenes/ComputerHand.gd
+res://scenes/deck.tscn

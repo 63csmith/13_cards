@@ -1,0 +1,83 @@
+[gd_scene load_steps=8 format=3 uid="uid://bdj7jropvibqy"]
+
+[ext_resource type="Script" path="res://Scripts/CardManager.gd" id="1_tytiv"]
+[ext_resource type="PackedScene" uid="uid://t2x24comwsty" path="res://scenes/card_slot.tscn" id="2_o7dgm"]
+[ext_resource type="PackedScene" uid="uid://dfb7uvbbpxsvh" path="res://scenes/computer_card_slot.tscn" id="3_yobok"]
+[ext_resource type="Script" path="res://Scripts/PlayerHand.gd" id="4_di7y8"]
+[ext_resource type="Script" path="res://scenes/ComputerHand.gd" id="5_tipi8"]
+[ext_resource type="PackedScene" uid="uid://bq1xl5bkta8fx" path="res://scenes/deck.tscn" id="6_j3inb"]
+[ext_resource type="Script" path="res://Scripts/InputManager.gd" id="7_7fywe"]
+
+[node name="Main" type="Node2D"]
+
+[node name="CardManager" type="Node2D" parent="."]
+script = ExtResource("1_tytiv")
+
+[node name="CardSlot" parent="." instance=ExtResource("2_o7dgm")]
+position = Vector2(222, 545)
+
+[node name="CardSlot2" parent="." instance=ExtResource("2_o7dgm")]
+position = Vector2(393, 545)
+
+[node name="CardSlot3" parent="." instance=ExtResource("2_o7dgm")]
+position = Vector2(569, 545)
+
+[node name="computer_card_slot" parent="." instance=ExtResource("3_yobok")]
+position = Vector2(222, 326)
+
+[node name="computer_card_slot2" parent="." instance=ExtResource("3_yobok")]
+position = Vector2(392, 328)
+
+[node name="computer_card_slot3" parent="." instance=ExtResource("3_yobok")]
+position = Vector2(570, 331)
+
+[node name="PlayerHand" type="Node2D" parent="."]
+script = ExtResource("4_di7y8")
+
+[node name="ComputerHand" type="Node2D" parent="."]
+script = ExtResource("5_tipi8")
+
+[node name="Deck" parent="." instance=ExtResource("6_j3inb")]
+position = Vector2(777, 439)
+
+[node name="InputManager" type="Node2D" parent="."]
+script = ExtResource("7_7fywe")
+
+[node name="Trade" type="Button" parent="InputManager"]
+offset_left = 705.0
+offset_top = 554.0
+offset_right = 854.0
+offset_bottom = 591.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="InputManager/Trade"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 146.0
+offset_bottom = 34.0
+mouse_filter = 2
+text = "Trade"
+
+[node name="Keep" type="Button" parent="InputManager"]
+offset_left = 705.0
+offset_top = 604.0
+offset_right = 854.0
+offset_bottom = 641.0
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="InputManager/Keep"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 4.0
+offset_right = 146.0
+offset_bottom = 33.0
+mouse_filter = 2
+text = "Keep"
+
+[node name="peek_text" type="RichTextLabel" parent="."]
+offset_left = 331.0
+offset_top = 429.0
+offset_right = 452.0
+offset_bottom = 453.0
+
+[connection signal="pressed" from="InputManager/Trade" to="InputManager" method="_on_trade_pressed"]
+[connection signal="pressed" from="InputManager/Keep" to="InputManager" method="_on_keep_pressed"]
