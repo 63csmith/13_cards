@@ -8,6 +8,7 @@ const COLLISON_MASK_CARD = 1
 const COLLISON_MASK_DECK = 4
 const COLLISON_MASK_SLOT = 2
 
+var main_ref
 var card_manager_ref
 var deck_ref
 var computer_hand_ref
@@ -19,6 +20,7 @@ var trade_card
 
 
 func _ready() -> void:
+	main_ref = $".."
 	card_manager_ref = $"../CardManager"
 	deck_ref = $"../Deck"
 	$Trade.disabled = true
@@ -81,6 +83,7 @@ func _on_trade_pressed():
 	$Trade.visible = false
 	$Keep.disabled = true
 	$Keep.visible = false
+	main_ref.get_node("peek_text").text = ""
 	#flip card 1,2, and 3
 	card_manager_ref.cards_in_hand[0].get_node("AnimationPlayer").play("card_flip")
 	card_manager_ref.cards_in_hand[1].get_node("AnimationPlayer").play("card_flip")
@@ -93,6 +96,7 @@ func _on_keep_pressed():
 	$Trade.visible = false
 	$Keep.disabled = true
 	$Keep.visible = false
+	main_ref.get_node("peek_text").text = ""
 	#flip card 1,2, and 3
 	card_manager_ref.cards_in_hand[0].get_node("AnimationPlayer").play("card_flip")
 	card_manager_ref.cards_in_hand[1].get_node("AnimationPlayer").play("card_flip")
