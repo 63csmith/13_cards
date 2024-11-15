@@ -29,6 +29,7 @@ func _ready() -> void:
 	player_deck.shuffle()
 	card_db_ref = preload("res://Scripts/card_DB.gd")
 	cards_in_hand = $"../CardManager".cards_in_hand
+	$"../deal".play()
 	for i in range(12):
 		draw_card()
 		draw_computer_card()

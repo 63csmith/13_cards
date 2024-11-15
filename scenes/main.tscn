@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bdj7jropvibqy"]
+[gd_scene load_steps=11 format=3 uid="uid://bdj7jropvibqy"]
 
 [ext_resource type="Script" path="res://Scripts/CardManager.gd" id="1_tytiv"]
 [ext_resource type="PackedScene" uid="uid://t2x24comwsty" path="res://scenes/card_slot.tscn" id="2_o7dgm"]
@@ -7,6 +7,9 @@
 [ext_resource type="Script" path="res://scenes/ComputerHand.gd" id="5_tipi8"]
 [ext_resource type="PackedScene" uid="uid://bq1xl5bkta8fx" path="res://scenes/deck.tscn" id="6_j3inb"]
 [ext_resource type="Script" path="res://Scripts/InputManager.gd" id="7_7fywe"]
+[ext_resource type="AudioStream" uid="uid://be8o0wqgxv0hy" path="res://Assets/Sounds/Card Flip.wav" id="8_6y732"]
+[ext_resource type="AudioStream" uid="uid://c150kjgyflvbb" path="res://Assets/Sounds/Card Placed.wav" id="9_3vaya"]
+[ext_resource type="AudioStream" uid="uid://cooey6cl7o382" path="res://Assets/Sounds/Card Dealing.wav" id="10_gtn28"]
 
 [node name="Main" type="Node2D"]
 
@@ -78,6 +81,15 @@ offset_left = 796.0
 offset_top = 529.0
 offset_right = 917.0
 offset_bottom = 553.0
+
+[node name="card_flip" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_6y732")
+
+[node name="card_placed" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_3vaya")
+
+[node name="deal" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_gtn28")
 
 [connection signal="pressed" from="InputManager/Trade" to="InputManager" method="_on_trade_pressed"]
 [connection signal="pressed" from="InputManager/Keep" to="InputManager" method="_on_keep_pressed"]

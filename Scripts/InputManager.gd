@@ -60,6 +60,7 @@ func ray_cast_at_cursor():
 			var slots_filled = card_manager_ref.filled_slots
 			#print(slot_found)
 			if slot_card and slots_filled == 3 and can_peek:
+				$"../card_flip".play()
 				#print(slot_found.card_in_the_slot)
 				slot_found.card_in_the_slot.scale = Vector2(1.01, 1.01)
 				#slot_found.card_in_the_slot.get_node("card_name").visible = true
@@ -85,6 +86,7 @@ func _on_trade_pressed():
 	$Keep.visible = false
 	main_ref.get_node("peek_text").text = ""
 	#flip card 1,2, and 3
+	$"../card_flip".play()
 	card_manager_ref.cards_in_hand[0].get_node("AnimationPlayer").play("card_flip")
 	card_manager_ref.cards_in_hand[1].get_node("AnimationPlayer").play("card_flip")
 	card_manager_ref.cards_in_hand[2].get_node("AnimationPlayer").play("card_flip")
@@ -98,6 +100,7 @@ func _on_keep_pressed():
 	$Keep.visible = false
 	main_ref.get_node("peek_text").text = ""
 	#flip card 1,2, and 3
+	$"../card_flip".play()
 	card_manager_ref.cards_in_hand[0].get_node("AnimationPlayer").play("card_flip")
 	card_manager_ref.cards_in_hand[1].get_node("AnimationPlayer").play("card_flip")
 	card_manager_ref.cards_in_hand[2].get_node("AnimationPlayer").play("card_flip")

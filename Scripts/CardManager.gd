@@ -46,6 +46,7 @@ func start_drag(card):
 func finish_drag():
 	card_being_dragged.scale = Vector2(1, 1)
 	var card_slot_found = check_for_card_slot()
+	$"../card_placed".play()
 	if card_slot_found and not card_slot_found.card_in_slot:
 		player_hand_reference.remove_card_from_hand(card_being_dragged)
 		card_being_dragged.position = card_slot_found.position
