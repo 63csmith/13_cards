@@ -10,8 +10,7 @@ size = Vector2(130, 192)
 script = ExtResource("1_hpolu")
 
 [node name="computer_card_slot_img" type="Sprite2D" parent="."]
-position = Vector2(0.999996, 0)
-scale = Vector2(0.722222, 0.718868)
+scale = Vector2(0.7, 0.683962)
 texture = ExtResource("2_1uc8j")
 
 [node name="Area2D" type="Area2D" parent="."]

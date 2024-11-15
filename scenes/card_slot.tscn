@@ -11,8 +11,8 @@ z_index = -2
 script = ExtResource("1_08jkf")
 
 [node name="Cardslotimg" type="Sprite2D" parent="."]
-position = Vector2(-1.5, 1.00001)
-scale = Vector2(0.716667, 0.671698)
+position = Vector2(-0.50001, -1.78814e-06)
+scale = Vector2(0.694445, 0.641509)
 texture = ExtResource("1_effgi")
 
 [node name="Area2D" type="Area2D" parent="."]
