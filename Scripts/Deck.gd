@@ -33,8 +33,8 @@ func _ready() -> void:
 		draw_computer_card()
 
 func draw_card():
-	var card_drawn = player_deck[0]
-	player_deck.erase(card_drawn)
+	var card_drawn_name = player_deck[0]
+	player_deck.erase(card_drawn_name)
 	
 	if player_deck.size() == 0:
 		$Area2D/CollisionShape2D.disabled = true
@@ -42,15 +42,18 @@ func draw_card():
 	
 	var card_scene = preload(CARD_SCENE_PATH)
 	var new_card = card_scene.instantiate()
-	new_card.get_node("card_name").text = str(card_db_ref.CARDS[card_drawn][0])
+	var card_img_path = str("res://Assets/cards/"+card_drawn_name+".png")
+	new_card.get_node("CardImg").texture = load(card_img_path)
+	new_card.get_node("card_name").text = str(card_db_ref.CARDS[card_drawn_name][0])
 	new_card.get_node("card_name").visible = false
 	$"../CardManager".add_child(new_card)
 	new_card.name = "card"
 	$"../PlayerHand".add_card_to_hand(new_card, CARD_DRAW_SPEED)
+	#new_card.get_node("AnimationPlayer").play("card_flip")
 	
 func draw_computer_card():
-	var card_drawn = player_deck[0]
-	player_deck.erase(card_drawn)
+	var card_drawn_name = player_deck[0]
+	player_deck.erase(card_drawn_name)
 	
 	if player_deck.size() == 0:
 		$Area2D/CollisionShape2D.disabled = true
@@ -58,7 +61,7 @@ func draw_computer_card():
 	
 	var card_scene = preload(CARD_SCENE_PATH)
 	var new_card = card_scene.instantiate()
-	new_card.get_node("card_name").text = str(card_db_ref.CARDS[card_drawn][0])
+	new_card.get_node("card_name").text = str(card_db_ref.CARDS[card_drawn_name][0])
 	new_card.get_node("card_name").visible = false
 	new_card.get_node("Area2D/CollisionShape2D").disabled = true
 	$"../CardManager".add_child(new_card)
@@ -67,8 +70,8 @@ func draw_computer_card():
 
 	
 func replace_card(trade_slot):
-	var card_drawn = player_deck[0]
-	player_deck.erase(card_drawn)
+	var card_drawn_name = player_deck[0]
+	player_deck.erase(card_drawn_name)
 	
 	if player_deck.size() == 0:
 		$Area2D/CollisionShape2D.disabled = true
@@ -76,9 +79,12 @@ func replace_card(trade_slot):
 	
 	var card_scene = preload(CARD_SCENE_PATH)
 	var new_card = card_scene.instantiate()
-	new_card.get_node("card_name").text = str(card_db_ref.CARDS[card_drawn][0])
+	new_card.get_node("card_name").text = str(card_db_ref.CARDS[card_drawn_name][0])
 	new_card.name = "card"
 	$"../CardManager".add_child(new_card)
+#animate the card being drawn from deck to card slot / trade position 
+
+
 
 	if trade_slot.card_in_the_slot:
 		# Find the index of the current card in cards_in_hand array

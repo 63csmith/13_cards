@@ -63,6 +63,7 @@ func ray_cast_at_cursor():
 				trade_slot = slot_found
 				trade_card = slot_found.card_in_the_slot
 				can_peek = false
+				trade_card.get_node("AnimationPlayer").play("card_flip")
 				$Trade.disabled = false
 				$Trade.visible = true
 				$Keep.disabled = false

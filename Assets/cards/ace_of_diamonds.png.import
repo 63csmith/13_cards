@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4lvamigygyyc"
-path="res://.godot/imported/1_of_diamonds.png-aa250059f636bb036ba0a46f83bd8ca9.ctex"
+uid="uid://liel68dwx4il"
+path="res://.godot/imported/ace_of_diamonds.png-ba699f8fd69cda1d27d12887abee3c8c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/cards/1_of_diamonds.png"
-dest_files=["res://.godot/imported/1_of_diamonds.png-aa250059f636bb036ba0a46f83bd8ca9.ctex"]
+source_file="res://Assets/cards/ace_of_diamonds.png"
+dest_files=["res://.godot/imported/ace_of_diamonds.png-ba699f8fd69cda1d27d12887abee3c8c.ctex"]
 
 [params]
 

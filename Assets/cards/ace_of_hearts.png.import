@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cnwiwu0qk2fat"
-path="res://.godot/imported/1_of_hearts.png-a9144b6bc0a0078f8ff4f2492398aa59.ctex"
+uid="uid://cxnp5ddytpou7"
+path="res://.godot/imported/ace_of_hearts.png-46e7c314cf12a9731bd46333715ee499.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/cards/1_of_hearts.png"
-dest_files=["res://.godot/imported/1_of_hearts.png-a9144b6bc0a0078f8ff4f2492398aa59.ctex"]
+source_file="res://Assets/cards/ace_of_hearts.png"
+dest_files=["res://.godot/imported/ace_of_hearts.png-46e7c314cf12a9731bd46333715ee499.ctex"]
 
 [params]
 

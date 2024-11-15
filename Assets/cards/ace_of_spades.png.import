@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d4ixubnpn46ew"
-path="res://.godot/imported/1_of_spades.png-28003f6f8c15cb926ce2796f39b9303b.ctex"
+uid="uid://bumpdr5dp3pfj"
+path="res://.godot/imported/ace_of_spades.png-1f57bb814482a264abf4d7d86b4be2d6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/cards/1_of_spades.png"
-dest_files=["res://.godot/imported/1_of_spades.png-28003f6f8c15cb926ce2796f39b9303b.ctex"]
+source_file="res://Assets/cards/ace_of_spades.png"
+dest_files=["res://.godot/imported/ace_of_spades.png-1f57bb814482a264abf4d7d86b4be2d6.ctex"]
 
 [params]
 
