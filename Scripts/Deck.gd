@@ -56,8 +56,8 @@ func draw_card():
 	#new_card.get_node("AnimationPlayer").play("card_flip")
 	
 func draw_computer_card():
-	var card_drawn_name = player_deck[0]
-	player_deck.erase(card_drawn_name)
+	var computer_card_drawn_name = player_deck[0]
+	player_deck.erase(computer_card_drawn_name)
 	
 	if player_deck.size() == 0:
 		$Area2D/CollisionShape2D.disabled = true
@@ -65,9 +65,9 @@ func draw_computer_card():
 	
 	var card_scene = preload(CARD_SCENE_PATH)
 	var new_card = card_scene.instantiate()
-	var card_img_path = str("res://Assets/cards/"+card_drawn_name+".png")
+	var card_img_path = str("res://Assets/cards/"+computer_card_drawn_name+".png")
 	new_card.get_node("CardImg").texture = load(card_img_path)
-	new_card.get_node("card_name").text = str(card_db_ref.CARDS[card_drawn_name][0])
+	new_card.get_node("card_name").text = str(card_db_ref.CARDS[computer_card_drawn_name][0])
 	new_card.get_node("card_name").visible = false
 	new_card.get_node("Area2D/CollisionShape2D").disabled = true
 	$"../CardManager".add_child(new_card)
@@ -86,6 +86,9 @@ func replace_card(trade_slot):
 	
 	var card_scene = preload(CARD_SCENE_PATH)
 	var new_card = card_scene.instantiate()
+	var card_img_path = str("res://Assets/cards/"+card_drawn_name+".png")
+	new_card.get_node("CardImg").texture = load(card_img_path)
+	new_card.get_node("card_name").text = str(card_db_ref.CARDS[card_drawn_name][0])
 	new_card.get_node("card_name").text = str(card_db_ref.CARDS[card_drawn_name][0])
 	new_card.get_node("card_name").visible = false
 	new_card.name = "card"
