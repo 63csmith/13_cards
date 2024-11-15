@@ -90,6 +90,9 @@ func _on_trade_pressed():
 	card_manager_ref.cards_in_hand[0].get_node("AnimationPlayer").play("card_flip")
 	card_manager_ref.cards_in_hand[1].get_node("AnimationPlayer").play("card_flip")
 	card_manager_ref.cards_in_hand[2].get_node("AnimationPlayer").play("card_flip")
+	card_manager_ref.cards_in_computer_hand[2].get_node("AnimationPlayer").play("card_flip")
+	card_manager_ref.cards_in_computer_hand[1].get_node("AnimationPlayer").play("card_flip")
+	card_manager_ref.cards_in_computer_hand[0].get_node("AnimationPlayer").play("card_flip")	
 
 
 
@@ -104,4 +107,7 @@ func _on_keep_pressed():
 	card_manager_ref.cards_in_hand[0].get_node("AnimationPlayer").play("card_flip")
 	card_manager_ref.cards_in_hand[1].get_node("AnimationPlayer").play("card_flip")
 	card_manager_ref.cards_in_hand[2].get_node("AnimationPlayer").play("card_flip")
+	card_manager_ref.cards_in_computer_hand[2].get_node("AnimationPlayer").play("card_flip")
+	card_manager_ref.cards_in_computer_hand[1].get_node("AnimationPlayer").play("card_flip")
+	card_manager_ref.cards_in_computer_hand[0].get_node("AnimationPlayer").play("card_flip")
 

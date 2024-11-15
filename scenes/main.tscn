@@ -25,7 +25,7 @@ position = Vector2(858, 645)
 [node name="CardSlot3" parent="." instance=ExtResource("2_o7dgm")]
 position = Vector2(1034, 645)
 
-[node name="computer_card_slot" parent="." instance=ExtResource("3_yobok")]
+[node name="computer_card_slot1" parent="." instance=ExtResource("3_yobok")]
 position = Vector2(687, 426)
 
 [node name="computer_card_slot2" parent="." instance=ExtResource("3_yobok")]

@@ -6,3 +6,4 @@ res://scenes/deck.tscn
 res://Scripts/Deck.gd
 res://Scripts/InputManager.gd
 res://Scripts/CardManager.gd
+res://Scripts/computer_card_slot.gd
