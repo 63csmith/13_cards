@@ -62,72 +62,66 @@ func finish_drag():
 		print(cards_in_hand)
 		check_all_slots_filled()
 		print(filled_slots)
-		add_random_card_to_random_computer_slot()
+		add_card_to_computer_slot_based_on_player()
 	else:
 		player_hand_reference.add_card_to_hand(card_being_dragged, DEFAULT_CARD_SPEED)
 	card_being_dragged = null
 	
-# Array to keep track of occupied slots
-var occupied_slots = []
+# Track the status of player and computer slots
+var player_slots_filled = [false, false, false]  # False = empty, True = filled
+var computer_slots_filled = [false, false, false]  # False = empty, True = filled
 
-func add_random_card_to_random_computer_slot():
-	# Step 1: Check if there are any cards to place and if any slots are available
-	if computer_hand_ref.computer_hand.size() == 0:
-		print("No cards available in computer's hand.")
-		return
-
-	if occupied_slots.size() >= 3:
-		print("All slots are occupied.")
-		return
-	
-	# Step 2: Choose a random card from the computer's hand
+func add_card_to_computer_slot_based_on_player():
+	# Step 1: Choose a random card from the computer's hand
 	var random_card_index = randi() % computer_hand_ref.computer_hand.size()
 	var computer_card = computer_hand_ref.computer_hand[random_card_index]
+	computer_hand_ref.computer_hand.remove_at(random_card_index)
 	
-	# Remove the card from the computer's hand
-	computer_hand_ref.remove_card_from_hand(computer_card)
-	
-	# Step 3: Choose an unoccupied slot
-	var random_slot_index
-	while true:
-		random_slot_index = randi() % 3 + 1  # Random number between 1 and 3
-		if random_slot_index not in occupied_slots:
-			break  # Found an unoccupied slot
+	# Step 2: Find the next available player slot
+	var target_slot_index = -1
+	for i in range(player_slots_filled.size()):
+		if player_slots_filled[i] and not computer_slots_filled[i]:
+			target_slot_index = i
+			break
 
-	# Mark the slot as occupied
-	occupied_slots.append(random_slot_index)
-	
-	# Get the path and position of the selected slot
-	var slot_node_path = "/root/Main/computer_card_slot" + str(random_slot_index)
+	if target_slot_index == -1:
+		print("No matching player slot to align with.")
+		return
+
+	# Step 3: Get the corresponding slot node for the computer
+	var slot_node_path = "/root/Main/computer_card_slot" + str(target_slot_index + 1)
 	var slot_node = get_node_or_null(slot_node_path)
 	if slot_node == null:
 		push_error("Slot node not found: " + slot_node_path)
 		return
-	
-	# Step 4: Place the card in the chosen slot
-	computer_card.position = slot_node.position
 
-	# Step 5: Add the card to the list of cards in the computer's hand
+	# Step 4: Place the card in the corresponding slot
+	computer_card.position = slot_node.position
+	computer_hand_ref.update_hand_positions(0.3)
+
+	# Step 5: Update computer slot status
+	computer_slots_filled[target_slot_index] = true
 	cards_in_computer_hand.append(computer_card)
+
+
 
 
 func check_all_slots_filled():
 	filled_slots = 0
-	
-	# Reference each CardSlot node directly
-	if $"../CardSlot".card_in_slot:
-		filled_slots += 1
-	if $"../CardSlot2".card_in_slot:
-		filled_slots += 1
-	if $"../CardSlot3".card_in_slot:
-		filled_slots += 1
-	
+
+	# Update player_slots_filled based on the card slots' status
+	player_slots_filled[0] = $"../CardSlot".card_in_slot
+	player_slots_filled[1] = $"../CardSlot2".card_in_slot
+	player_slots_filled[2] = $"../CardSlot3".card_in_slot
+
+	# Count filled slots
+	for slot_filled in player_slots_filled:
+		if slot_filled:
+			filled_slots += 1
 
 	if filled_slots == 3:
 		main_ref.get_node("peek_text").text = "Time to peek"
 		Input.set_custom_mouse_cursor(magnifying_glass_cursor, 0, Vector2(64, 64))
-		
-
 
 
 

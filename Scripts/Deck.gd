@@ -32,7 +32,9 @@ func _ready() -> void:
 	$"../deal".play()
 	for i in range(12):
 		draw_card()
+	for i in range(12):
 		draw_computer_card()
+
 
 func draw_card():
 	var card_drawn_name = player_deck[0]
@@ -63,12 +65,15 @@ func draw_computer_card():
 	
 	var card_scene = preload(CARD_SCENE_PATH)
 	var new_card = card_scene.instantiate()
+	var card_img_path = str("res://Assets/cards/"+card_drawn_name+".png")
+	new_card.get_node("CardImg").texture = load(card_img_path)
 	new_card.get_node("card_name").text = str(card_db_ref.CARDS[card_drawn_name][0])
 	new_card.get_node("card_name").visible = false
 	new_card.get_node("Area2D/CollisionShape2D").disabled = true
 	$"../CardManager".add_child(new_card)
 	new_card.name = "card"
 	$"../ComputerHand".add_card_to_hand(new_card, CARD_DRAW_SPEED)
+	#new_card.get_node("AnimationPlayer").play("card_flip")
 
 	
 func replace_card(trade_slot):

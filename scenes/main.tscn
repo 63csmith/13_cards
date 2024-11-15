@@ -26,12 +26,15 @@ position = Vector2(858, 645)
 position = Vector2(1034, 645)
 
 [node name="computer_card_slot1" parent="." instance=ExtResource("3_yobok")]
+z_index = -2
 position = Vector2(687, 426)
 
 [node name="computer_card_slot2" parent="." instance=ExtResource("3_yobok")]
+z_index = -2
 position = Vector2(857, 428)
 
 [node name="computer_card_slot3" parent="." instance=ExtResource("3_yobok")]
+z_index = -2
 position = Vector2(1035, 431)
 
 [node name="PlayerHand" type="Node2D" parent="."]
