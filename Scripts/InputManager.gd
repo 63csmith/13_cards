@@ -10,6 +10,7 @@ const COLLISON_MASK_SLOT = 2
 
 var card_manager_ref
 var deck_ref
+var computer_hand_ref
 var can_peek = true
 var trade_slot
 var trade_card
@@ -59,7 +60,7 @@ func ray_cast_at_cursor():
 			if slot_card and slots_filled == 3 and can_peek:
 				#print(slot_found.card_in_the_slot)
 				slot_found.card_in_the_slot.scale = Vector2(1.01, 1.01)
-				slot_found.card_in_the_slot.get_node("card_name").visible = true
+				#slot_found.card_in_the_slot.get_node("card_name").visible = true
 				trade_slot = slot_found
 				trade_card = slot_found.card_in_the_slot
 				can_peek = false
@@ -80,7 +81,11 @@ func _on_trade_pressed():
 	$Trade.visible = false
 	$Keep.disabled = true
 	$Keep.visible = false
-	
+	#flip card 1,2, and 3
+	card_manager_ref.cards_in_hand[0].get_node("AnimationPlayer").play("card_flip")
+	card_manager_ref.cards_in_hand[1].get_node("AnimationPlayer").play("card_flip")
+	card_manager_ref.cards_in_hand[2].get_node("AnimationPlayer").play("card_flip")
+
 
 
 func _on_keep_pressed():
@@ -88,4 +93,8 @@ func _on_keep_pressed():
 	$Trade.visible = false
 	$Keep.disabled = true
 	$Keep.visible = false
-	pass # Replace with function body.
+	#flip card 1,2, and 3
+	card_manager_ref.cards_in_hand[0].get_node("AnimationPlayer").play("card_flip")
+	card_manager_ref.cards_in_hand[1].get_node("AnimationPlayer").play("card_flip")
+	card_manager_ref.cards_in_hand[2].get_node("AnimationPlayer").play("card_flip")
+

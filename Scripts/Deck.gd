@@ -24,6 +24,7 @@ var card_db_ref
 var cards_in_hand
 
 
+
 func _ready() -> void:
 	player_deck.shuffle()
 	card_db_ref = preload("res://Scripts/card_DB.gd")
@@ -80,6 +81,7 @@ func replace_card(trade_slot):
 	var card_scene = preload(CARD_SCENE_PATH)
 	var new_card = card_scene.instantiate()
 	new_card.get_node("card_name").text = str(card_db_ref.CARDS[card_drawn_name][0])
+	new_card.get_node("card_name").visible = false
 	new_card.name = "card"
 	$"../CardManager".add_child(new_card)
 #animate the card being drawn from deck to card slot / trade position 

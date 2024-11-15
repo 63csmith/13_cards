@@ -12,6 +12,7 @@ var filled_slots
 var main_ref
 var magnifying_glass_cursor =load("res://Assets/magnifier.png")
 var cards_in_hand = []
+var cards_in_computer_hand = []
 
 func  _ready() -> void:
 	screen_size = get_viewport_rect().size

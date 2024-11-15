@@ -5,3 +5,4 @@ res://scenes/computer_card_slot.tscn
 res://scenes/deck.tscn
 res://Scripts/Deck.gd
 res://Scripts/InputManager.gd
+res://Scripts/CardManager.gd
