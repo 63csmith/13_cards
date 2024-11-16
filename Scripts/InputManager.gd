@@ -332,6 +332,8 @@ func end_of_hand_calculation():
 	card_manager_ref.cards_in_computer_hand.clear()
 	player_wins = 0
 	computer_wins = 0
+	print(player_hand_ref.player_hand)
+	win_or_shuffle()
 
 func end_of_hand_draw():
 	#each "player" gets cards back
@@ -349,3 +351,6 @@ func end_of_hand_draw():
 	computer_hand_ref.animate_card_to_position(card_manager_ref.cards_in_computer_hand[2], computer_cards_won_ref.position, 1.0)
 	deck_ref.computer_won_deck.insert(0,card_manager_ref.cards_in_computer_hand[2])
 	
+func win_or_shuffle():
+	if !player_hand_ref.player_hand:
+		print("test")

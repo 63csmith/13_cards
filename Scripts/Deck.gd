@@ -35,6 +35,7 @@ func _ready() -> void:
 		draw_card()
 	for i in range(12):
 		draw_computer_card()
+		
 
 func draw_card():
 	var card_drawn_name = player_deck[0]
@@ -104,10 +105,10 @@ func replace_card(trade_slot):
 		# Find the index of the current card in cards_in_hand array
 		var index = cards_in_hand.find(trade_slot.card_in_the_slot)
 		
-		print("Look here for new debug")
-		print(cards_in_hand)
-		print(trade_slot.card_in_the_slot)
-		print(index)
+		#print("Look here for new debug")
+		#print(cards_in_hand)
+		#print(trade_slot.card_in_the_slot)
+		#print(index)
 		if index != -1:
 			# Remove the current card from the cards_in_hand array at the found index
 			cards_in_hand.remove_at(index)
@@ -119,4 +120,4 @@ func replace_card(trade_slot):
 		trade_slot.card_in_the_slot = new_card  # Set the new card as the slot's card
 		new_card.position = trade_slot.position  # Place the new card in the slot's position
 		new_card.get_node("Area2D/CollisionShape2D").disabled = true
-		print(cards_in_hand)  # Disable collision if needed
+		#print(cards_in_hand)  # Disable collision if needed
