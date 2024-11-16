@@ -16,6 +16,7 @@ var magnifying_glass_cursor =load("res://Assets/magnifier.png")
 var cards_in_hand = []
 #really cards in computers slot
 var cards_in_computer_hand = []
+var target_slot_index
 
 func  _ready() -> void:
 	randomize()
@@ -80,7 +81,7 @@ func add_card_to_computer_slot_based_on_player():
 	computer_hand_ref.computer_hand.remove_at(random_card_index)
 	
 	# Step 2: Find the next available player slot
-	var target_slot_index = -1
+	target_slot_index = -1
 	for i in range(player_slots_filled.size()):
 		if player_slots_filled[i] and not computer_slots_filled[i]:
 			target_slot_index = i

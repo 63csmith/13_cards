@@ -85,7 +85,7 @@ func ray_cast_at_cursor():
 				$Keep.visible = true
 				Input.set_custom_mouse_cursor(null)
 		elif result_collsion_mask == COLLISON_MASK_DECK:
-			deck_ref.get_node("Deck_warning").text = "Opps cant draw yet"
+			deck_ref.get_node("Deck_warning").text = "Opps cant draw"
 			#deck_ref.draw_card()
 			
 		#return result[0].collider.get_parent()
@@ -97,6 +97,7 @@ func _on_trade_pressed():
 	$Keep.disabled = true
 	$Keep.visible = false
 	#main_ref.get_node("peek_text").text = ""
+	await delayed_function(0.3)
 	# Flip card 1
 	$"../card_flip".play()
 	card_manager_ref.cards_in_hand[0].get_node("AnimationPlayer").play("card_flip")
@@ -181,10 +182,9 @@ func _on_trade_pressed():
 	else:
 		round_3 = "Draw"
 	main_ref.get_node("round_3_result").text = round_3
-
+	await delayed_function(1.0)
+	
 	end_of_hand_calculation()
-
-
 
 func _on_keep_pressed():
 	$Trade.disabled = true
@@ -276,7 +276,9 @@ func _on_keep_pressed():
 	else:
 		round_3 = "Draw"
 	main_ref.get_node("round_3_result").text = round_3
-
+	
+	await delayed_function(1.0)
+	
 	end_of_hand_calculation()
 
 func end_of_hand_calculation():
@@ -313,7 +315,23 @@ func end_of_hand_calculation():
 		deck_ref.computer_won_deck.insert(0,card_manager_ref.cards_in_computer_hand[1])
 		computer_hand_ref.animate_card_to_position(card_manager_ref.cards_in_computer_hand[2], computer_cards_won_ref.position, 1.0)
 		deck_ref.computer_won_deck.insert(0,card_manager_ref.cards_in_computer_hand[2])
-	
+	$"../CardSlot".card_in_slot = false
+	$"../CardSlot2".card_in_slot = false
+	$"../CardSlot3".card_in_slot = false
+	$"../computer_card_slot1".card_in_slot = false
+	$"../computer_card_slot2".card_in_slot = false
+	$"../computer_card_slot3".card_in_slot = false
+	main_ref.get_node("round_1_result").text = ""
+	main_ref.get_node("round_2_result").text = ""
+	main_ref.get_node("round_3_result").text = ""
+	can_peek = true
+	#card_manager_ref.target_slot_index = -1
+	card_manager_ref.player_slots_filled = [false, false, false]  # False = empty, True = filled
+	card_manager_ref.computer_slots_filled = [false, false, false]
+	card_manager_ref.cards_in_hand.clear()
+	card_manager_ref.cards_in_computer_hand.clear()
+	player_wins = 0
+	computer_wins = 0
 
 func end_of_hand_draw():
 	#each "player" gets cards back
@@ -330,3 +348,4 @@ func end_of_hand_draw():
 	deck_ref.computer_won_deck.insert(0,card_manager_ref.cards_in_computer_hand[1])
 	computer_hand_ref.animate_card_to_position(card_manager_ref.cards_in_computer_hand[2], computer_cards_won_ref.position, 1.0)
 	deck_ref.computer_won_deck.insert(0,card_manager_ref.cards_in_computer_hand[2])
+	

@@ -103,11 +103,15 @@ func replace_card(trade_slot):
 	if trade_slot.card_in_the_slot:
 		# Find the index of the current card in cards_in_hand array
 		var index = cards_in_hand.find(trade_slot.card_in_the_slot)
+		
+		print("Look here for new debug")
+		print(cards_in_hand)
+		print(trade_slot.card_in_the_slot)
+		print(index)
 		if index != -1:
 			# Remove the current card from the cards_in_hand array at the found index
 			cards_in_hand.remove_at(index)
 		
-		# Free the existing card in the slot
 		trade_slot.card_in_the_slot.queue_free()
 	
 	# Insert the new card at the same index in cards_in_hand
