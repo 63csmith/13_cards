@@ -68,6 +68,7 @@ func draw_computer_card():
 	var card_img_path = str("res://Assets/cards/"+computer_card_drawn_name+".png")
 	new_card.get_node("CardImg").texture = load(card_img_path)
 	new_card.get_node("card_name").text = str(card_db_ref.CARDS[computer_card_drawn_name][0])
+	new_card.rotation_degrees = 180
 	new_card.get_node("card_name").visible = false
 	new_card.get_node("Area2D/CollisionShape2D").disabled = true
 	$"../CardManager".add_child(new_card)

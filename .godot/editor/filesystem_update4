@@ -4,6 +4,3 @@ res://scenes/card_slot.tscn
 res://scenes/computer_card_slot.tscn
 res://scenes/deck.tscn
 res://Scripts/Deck.gd
-res://Scripts/CardManager.gd
-res://scenes/ResetButton.gd
-res://scenes/main.gd
