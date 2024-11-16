@@ -27,6 +27,7 @@ func  _ready() -> void:
 
 @warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
+
 	if card_being_dragged:
 		var mouse_pos = get_global_mouse_position()
 		card_being_dragged.position = Vector2(clamp(mouse_pos.x, 0, screen_size.x),
@@ -43,11 +44,12 @@ func _process(delta: float) -> void:
 			#if card_being_dragged: 
 				#finish_drag()
 			#
+
 func start_drag(card):
 	card_being_dragged = card
 	card.scale = Vector2(1.1, 1.1)
-	card.z_index = 3
-	
+	card.z_index = 3	
+
 func finish_drag():
 	card_being_dragged.scale = Vector2(1, 1)
 	var card_slot_found = check_for_card_slot()
@@ -66,7 +68,7 @@ func finish_drag():
 	else:
 		player_hand_reference.add_card_to_hand(card_being_dragged, DEFAULT_CARD_SPEED)
 	card_being_dragged = null
-	
+
 # Track the status of player and computer slots
 var player_slots_filled = [false, false, false]  # False = empty, True = filled
 var computer_slots_filled = [false, false, false]  # False = empty, True = filled
@@ -103,9 +105,6 @@ func add_card_to_computer_slot_based_on_player():
 	computer_slots_filled[target_slot_index] = true
 	cards_in_computer_hand.append(computer_card)
 
-
-
-
 func check_all_slots_filled():
 	filled_slots = 0
 
@@ -123,25 +122,20 @@ func check_all_slots_filled():
 		main_ref.get_node("peek_text").text = "Time to peek"
 		Input.set_custom_mouse_cursor(magnifying_glass_cursor, 0, Vector2(64, 64))
 
-
-
 func connect_card_sig(card):
 	card.connect("hovered", on_hovered_over_card)
 	card.connect("hovered_off", on_hovered_off_card)
-	
+
 func on_left_click_released():
 	if card_being_dragged: 
 		finish_drag()
-
-
 
 func on_hovered_over_card(card):
 	if !is_hovering_on_card:
 		is_hovering_on_card = true
 		highlight_card(card, true)
 	#print("hovered")
-	
-	
+
 func on_hovered_off_card(card):
 	if !card_being_dragged:
 		highlight_card(card, false)
@@ -152,8 +146,6 @@ func on_hovered_off_card(card):
 		else:
 			is_hovering_on_card = false
 
-
-
 func highlight_card(card, hovered):
 	if hovered:
 		card.scale = Vector2(1.1, 1.1)
@@ -161,7 +153,6 @@ func highlight_card(card, hovered):
 	else :
 		card.scale = Vector2(1, 1)
 		card.z_index = 1
-
 
 func check_for_card_slot():
 	var space_state = get_world_2d().direct_space_state
@@ -185,8 +176,7 @@ func check_for_card():
 		#return result[0].collider.get_parent()
 		return get_card_with_highest_z_index(result)
 	return null
-	
-	
+
 func get_card_with_highest_z_index(cards):
 	var highest_z_card = cards[0].collider.get_parent()
 	var highest_z_index = highest_z_card.z_index
@@ -198,8 +188,4 @@ func get_card_with_highest_z_index(cards):
 			highest_z_index = current_card.z_index
 			
 	return highest_z_card
-			
-			
-			
-			
-			
+

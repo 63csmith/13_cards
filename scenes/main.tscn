@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bdj7jropvibqy"]
+[gd_scene load_steps=14 format=3 uid="uid://bdj7jropvibqy"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_jgtar"]
 [ext_resource type="Script" path="res://Scripts/CardManager.gd" id="1_tytiv"]
@@ -11,6 +11,8 @@
 [ext_resource type="AudioStream" uid="uid://be8o0wqgxv0hy" path="res://Assets/Sounds/Card Flip.wav" id="8_6y732"]
 [ext_resource type="AudioStream" uid="uid://c150kjgyflvbb" path="res://Assets/Sounds/Card Placed.wav" id="9_3vaya"]
 [ext_resource type="AudioStream" uid="uid://cooey6cl7o382" path="res://Assets/Sounds/Card Dealing.wav" id="10_gtn28"]
+[ext_resource type="PackedScene" uid="uid://b6b1c7dynwevb" path="res://player_cards_won.tscn" id="12_85r1q"]
+[ext_resource type="PackedScene" uid="uid://kykk8n6da3un" path="res://computer_cards_won.tscn" id="13_hqxr2"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_jgtar")
@@ -82,10 +84,28 @@ mouse_filter = 2
 text = "Keep"
 
 [node name="peek_text" type="RichTextLabel" parent="."]
-offset_left = 796.0
-offset_top = 529.0
-offset_right = 917.0
+offset_left = 789.0
+offset_top = 520.0
+offset_right = 931.0
 offset_bottom = 553.0
+
+[node name="round_1_result" type="RichTextLabel" parent="."]
+offset_left = 618.0
+offset_top = 522.0
+offset_right = 760.0
+offset_bottom = 555.0
+
+[node name="round_2_result" type="RichTextLabel" parent="."]
+offset_left = 786.0
+offset_top = 523.0
+offset_right = 928.0
+offset_bottom = 556.0
+
+[node name="round_3_result" type="RichTextLabel" parent="."]
+offset_left = 964.0
+offset_top = 525.0
+offset_right = 1106.0
+offset_bottom = 558.0
 
 [node name="card_flip" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_6y732")
@@ -110,6 +130,12 @@ offset_right = 135.0
 offset_bottom = 40.0
 mouse_filter = 2
 text = "RESET"
+
+[node name="player_cards_won" parent="." instance=ExtResource("12_85r1q")]
+position = Vector2(1675, 678)
+
+[node name="computer_cards_won" parent="." instance=ExtResource("13_hqxr2")]
+position = Vector2(1671, 335)
 
 [connection signal="pressed" from="InputManager/Trade" to="InputManager" method="_on_trade_pressed"]
 [connection signal="pressed" from="InputManager/Keep" to="InputManager" method="_on_keep_pressed"]

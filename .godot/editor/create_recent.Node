@@ -1,9 +1,10 @@
+Sprite2D
+Node2D
+Node
 RichTextLabel
 Button
 AudioStreamPlayer2D
-Sprite2D
 AnimationPlayer
-Node2D
 TextEdit
 CollisionShape2D
 Area2D

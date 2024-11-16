@@ -23,7 +23,8 @@ var player_deck = [
 var card_db_ref
 var cards_in_hand
 
-
+var player_won_deck = []
+var computer_won_deck = []
 
 func _ready() -> void:
 	player_deck.shuffle()
@@ -34,7 +35,6 @@ func _ready() -> void:
 		draw_card()
 	for i in range(12):
 		draw_computer_card()
-
 
 func draw_card():
 	var card_drawn_name = player_deck[0]
@@ -50,11 +50,12 @@ func draw_card():
 	new_card.get_node("CardImg").texture = load(card_img_path)
 	new_card.get_node("card_name").text = str(card_db_ref.CARDS[card_drawn_name][0])
 	new_card.get_node("card_name").visible = false
+	new_card.card_value = card_db_ref.CARDS[card_drawn_name][0]
 	$"../CardManager".add_child(new_card)
 	new_card.name = "card"
 	$"../PlayerHand".add_card_to_hand(new_card, CARD_DRAW_SPEED)
 	#new_card.get_node("AnimationPlayer").play("card_flip")
-	
+
 func draw_computer_card():
 	var computer_card_drawn_name = player_deck[0]
 	player_deck.erase(computer_card_drawn_name)
@@ -71,12 +72,12 @@ func draw_computer_card():
 	new_card.rotation_degrees = 180
 	new_card.get_node("card_name").visible = false
 	new_card.get_node("Area2D/CollisionShape2D").disabled = true
+	new_card.card_value = card_db_ref.CARDS[computer_card_drawn_name][0]
 	$"../CardManager".add_child(new_card)
 	new_card.name = "card"
 	$"../ComputerHand".add_card_to_hand(new_card, CARD_DRAW_SPEED)
 	#new_card.get_node("AnimationPlayer").play("card_flip")
 
-	
 func replace_card(trade_slot):
 	var card_drawn_name = player_deck[0]
 	player_deck.erase(card_drawn_name)
@@ -92,6 +93,7 @@ func replace_card(trade_slot):
 	new_card.get_node("card_name").text = str(card_db_ref.CARDS[card_drawn_name][0])
 	new_card.get_node("card_name").text = str(card_db_ref.CARDS[card_drawn_name][0])
 	new_card.get_node("card_name").visible = false
+	new_card.card_value = card_db_ref.CARDS[card_drawn_name][0]
 	new_card.name = "card"
 	$"../CardManager".add_child(new_card)
 #animate the card being drawn from deck to card slot / trade position 
