@@ -98,21 +98,21 @@ grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 24
 
 [node name="round_1_result" type="RichTextLabel" parent="."]
-offset_left = 618.0
+offset_left = 626.0
 offset_top = 522.0
-offset_right = 760.0
+offset_right = 768.0
 offset_bottom = 555.0
 
 [node name="round_2_result" type="RichTextLabel" parent="."]
-offset_left = 786.0
+offset_left = 795.0
 offset_top = 523.0
-offset_right = 928.0
+offset_right = 937.0
 offset_bottom = 556.0
 
 [node name="round_3_result" type="RichTextLabel" parent="."]
-offset_left = 964.0
+offset_left = 971.0
 offset_top = 525.0
-offset_right = 1106.0
+offset_right = 1113.0
 offset_bottom = 558.0
 
 [node name="card_flip" type="AudioStreamPlayer2D" parent="."]

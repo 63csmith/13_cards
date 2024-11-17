@@ -64,6 +64,6 @@ const CARDS = {
 	"ace_of_diamonds": [14],   # 🂡 = Ace 🅰️ (14) of Diamonds
 	"ace_of_clubs": [14],      # 🂡 = Ace 🅰️ (14) of Clubs
 
-	"joker_1": [100],        # Joker Power Card 🃏 = Win the hand
-	"joker_2": [100]           
+	# Joker Power Card 🃏 = Win the hand
+	"joker": [100]           
 };

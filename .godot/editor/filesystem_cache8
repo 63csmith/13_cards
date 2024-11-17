@@ -1,14 +1,14 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1731791494
+::res://::1731805035
 computer_cards_won.tscn::PackedScene::752060285110024437::1731780819::0::1::::<><>::uid://cra36ytpq0y18::::res://Assets/CardSlot.png
-player_cards_won.tscn::PackedScene::4565923114116213019::1731791245::0::1::::<><>::uid://cra36ytpq0y18::::res://Assets/CardSlot.png
+player_cards_won.tscn::PackedScene::4565923114116213019::1731804789::0::1::::<><>::uid://cra36ytpq0y18::::res://Assets/CardSlot.png
 README.md::TextFile::-1::1731460878::0::1::::<><>::
 ::res://Assets/::1731638644
 CardSlot.png::CompressedTexture2D::5967808435256876765::1731262711::1731291748::1::::<><>::
 Card_back_placeholder_simple.png::CompressedTexture2D::4639847326316439984::1731459823::1731459823::1::::<><>::
 icon.svg::CompressedTexture2D::6669914209548602434::1730666413::1731291788::1::::<><>::
 magnifier.png::CompressedTexture2D::2796912279794311726::1731471406::1731471411::1::::<><>::
-::res://Assets/cards/::1731656352
+::res://Assets/cards/::1731805035
 2_of_clubs.png::CompressedTexture2D::105115753956565189::1731642987::1731642988::1::::<><>::
 2_of_diamonds.png::CompressedTexture2D::7147244237197972428::1731642987::1731642988::1::::<><>::
 2_of_hearts.png::CompressedTexture2D::17210560866205552::1731642987::1731642988::1::::<><>::
@@ -53,8 +53,7 @@ jack_of_clubs.png::CompressedTexture2D::1229616445013875169::1731642987::1731642
 jack_of_diamonds.png::CompressedTexture2D::1987553659924302259::1731642987::1731642988::1::::<><>::
 jack_of_hearts.png::CompressedTexture2D::7275961204870059541::1731642987::1731642988::1::::<><>::
 jack_of_spades.png::CompressedTexture2D::5498830954439920191::1731642987::1731642988::1::::<><>::
-joker_1.png::CompressedTexture2D::174596369549221510::1731656351::1731656352::1::::<><>::
-joker_2.png::CompressedTexture2D::1119635487055634186::1731656300::1731656341::1::::<><>::
+joker.png::CompressedTexture2D::174596369549221510::1731656351::1731805035::1::::<><>::
 king_of_clubs.png::CompressedTexture2D::8454934643341227484::1731642987::1731642988::1::::<><>::
 king_of_diamonds.png::CompressedTexture2D::3231408929979220952::1731642987::1731642988::1::::<><>::
 king_of_hearts.png::CompressedTexture2D::2140203294563486604::1731642987::1731642988::1::::<><>::
@@ -67,21 +66,21 @@ queen_of_spades.png::CompressedTexture2D::1242939623359760523::1731642987::17316
 Card Dealing.wav::AudioStreamWAV::5784673825756875197::1731551787::1731551787::1::::<><>::
 Card Flip.wav::AudioStreamWAV::2736196387410332738::1731551787::1731551787::1::::<><>::
 Card Placed.wav::AudioStreamWAV::6661218900431614239::1731551787::1731551787::1::::<><>::
-::res://scenes/::1731791484
-card.tscn::PackedScene::6268055473088901875::1731791245::0::1::::<><>::res://Scripts/card.gd<>uid://b7dtuwmdl287e::::res://Assets/Card_back_placeholder_simple.png<>uid://bq6igyub3vll::::res://Assets/cards/2_of_clubs.png
-card_slot.tscn::PackedScene::1390772462671071254::1731791245::0::1::::<><>::res://Scripts/card_slot.gd<>uid://cra36ytpq0y18::::res://Assets/CardSlot.png
+::res://scenes/::1731805009
+card.tscn::PackedScene::6268055473088901875::1731804789::0::1::::<><>::res://Scripts/card.gd<>uid://b7dtuwmdl287e::::res://Assets/Card_back_placeholder_simple.png<>uid://bq6igyub3vll::::res://Assets/cards/2_of_clubs.png
+card_slot.tscn::PackedScene::1390772462671071254::1731804789::0::1::::<><>::res://Scripts/card_slot.gd<>uid://cra36ytpq0y18::::res://Assets/CardSlot.png
 ComputerHand.gd::GDScript::-1::1731477539::0::1::::<>Node2D<>::
-computer_card_slot.tscn::PackedScene::7514250411271713057::1731791245::0::1::::<><>::res://Scripts/computer_card_slot.gd<>uid://cra36ytpq0y18::::res://Assets/CardSlot.png
-deck.tscn::PackedScene::3564533715798847605::1731791245::0::1::::<><>::res://Scripts/Deck.gd<>uid://b7dtuwmdl287e::::res://Assets/Card_back_placeholder_simple.png
+computer_card_slot.tscn::PackedScene::7514250411271713057::1731804789::0::1::::<><>::res://Scripts/computer_card_slot.gd<>uid://cra36ytpq0y18::::res://Assets/CardSlot.png
+deck.tscn::PackedScene::3564533715798847605::1731804789::0::1::::<><>::res://Scripts/Deck.gd<>uid://b7dtuwmdl287e::::res://Assets/Card_back_placeholder_simple.png
 main.gd::GDScript::-1::1731694708::0::1::::<>Node2D<>::
-main.tscn::PackedScene::2617526545541531948::1731791484::0::1::::<><>::res://scenes/main.gd<>res://Scripts/CardManager.gd<>uid://t2x24comwsty::::res://scenes/card_slot.tscn<>uid://dfb7uvbbpxsvh::::res://scenes/computer_card_slot.tscn<>res://Scripts/PlayerHand.gd<>res://scenes/ComputerHand.gd<>uid://bq1xl5bkta8fx::::res://scenes/deck.tscn<>res://Scripts/InputManager.gd<>uid://be8o0wqgxv0hy::::res://Assets/Sounds/Card Flip.wav<>uid://c150kjgyflvbb::::res://Assets/Sounds/Card Placed.wav<>uid://cooey6cl7o382::::res://Assets/Sounds/Card Dealing.wav<>uid://b6b1c7dynwevb::::res://player_cards_won.tscn<>uid://kykk8n6da3un::::res://computer_cards_won.tscn
+main.tscn::PackedScene::2617526545541531948::1731805009::0::1::::<><>::res://scenes/main.gd<>res://Scripts/CardManager.gd<>uid://t2x24comwsty::::res://scenes/card_slot.tscn<>uid://dfb7uvbbpxsvh::::res://scenes/computer_card_slot.tscn<>res://Scripts/PlayerHand.gd<>res://scenes/ComputerHand.gd<>uid://bq1xl5bkta8fx::::res://scenes/deck.tscn<>res://Scripts/InputManager.gd<>uid://be8o0wqgxv0hy::::res://Assets/Sounds/Card Flip.wav<>uid://c150kjgyflvbb::::res://Assets/Sounds/Card Placed.wav<>uid://cooey6cl7o382::::res://Assets/Sounds/Card Dealing.wav<>uid://b6b1c7dynwevb::::res://player_cards_won.tscn<>uid://kykk8n6da3un::::res://computer_cards_won.tscn
 ResetButton.gd::GDScript::-1::1731694668::0::1::::<>Button<>::
-::res://Scripts/::1731791484
-card.gd::GDScript::-1::1731775224::0::1::::<>Node2D<>::
-CardManager.gd::GDScript::-1::1731786399::0::1::::<>Node2D<>::
+::res://Scripts/::1731805010
+card.gd::GDScript::-1::1731792846::0::1::::<>Node2D<>::
+CardManager.gd::GDScript::-1::1731801687::0::1::::<>Node2D<>::
 card_DB.gd::GDScript::-1::1731776988::0::1::::<>RefCounted<>::
 card_slot.gd::GDScript::-1::1731471778::0::1::::<>Node2D<>::
-computer_card_slot.gd::GDScript::-1::1731654151::0::1::::<>Node2D<>::
-Deck.gd::GDScript::-1::1731790741::0::1::::<>Node2D<>::
-InputManager.gd::GDScript::-1::1731791484::0::1::::<>Node2D<>::
+computer_card_slot.gd::GDScript::-1::1731801445::0::1::::<>Node2D<>::
+Deck.gd::GDScript::-1::1731805010::0::1::::<>Node2D<>::
+InputManager.gd::GDScript::-1::1731804976::0::1::::<>Node2D<>::
 PlayerHand.gd::GDScript::-1::1731778550::0::1::::<>Node2D<>::
