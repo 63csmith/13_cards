@@ -8,6 +8,7 @@ const COLLISON_MASK_CARD = 1
 const COLLISON_MASK_DECK = 4
 const COLLISON_MASK_SLOT = 2
 
+
 var main_ref
 var card_manager_ref
 var deck_ref
@@ -20,6 +21,7 @@ var player_wins = 0
 var computer_wins = 0
 var player_cards_won_ref
 var computer_cards_won_ref
+var end_of_round_delay = 1.0
 
 func _ready() -> void:
 	main_ref = $".."
@@ -97,13 +99,14 @@ func _on_trade_pressed():
 	$Keep.disabled = true
 	$Keep.visible = false
 	#main_ref.get_node("peek_text").text = ""
+	await delayed_function(0.5)
+		# Flip card 1
 	await delayed_function(0.3)
-	# Flip card 1
 	$"../card_flip".play()
-	card_manager_ref.cards_in_hand[0].get_node("AnimationPlayer").play("card_flip")
-	card_manager_ref.cards_in_computer_hand[0].get_node("AnimationPlayer").play("card_flip")
-	var card_1 = card_manager_ref.cards_in_hand[0].card_value
-	var computer_card_1 = card_manager_ref.cards_in_computer_hand[0].card_value
+	$"../CardSlot".card_in_the_slot.get_node("AnimationPlayer").play("card_flip")
+	$"../computer_card_slot1".card_in_the_slot.get_node("AnimationPlayer").play("card_flip")
+	var card_1 = $"../CardSlot".card_in_the_slot.card_value
+	var computer_card_1 = $"../computer_card_slot1".card_in_the_slot.card_value
 	var round_1
 	if card_1 == 100 and computer_card_1 == 100:
 		round_1 = "Draw (both cards are jokers)"
@@ -125,14 +128,14 @@ func _on_trade_pressed():
 		round_1 = "Draw"
 	main_ref.get_node("round_1_result").text = round_1
 
-	await delayed_function(1.0)  # Add 1-second delay
+	await delayed_function(1.5)  # Add 1-second delay
 
 	# Flip card 2
 	$"../card_flip".play()
-	card_manager_ref.cards_in_hand[1].get_node("AnimationPlayer").play("card_flip")
-	card_manager_ref.cards_in_computer_hand[1].get_node("AnimationPlayer").play("card_flip")
-	var card_2 = card_manager_ref.cards_in_hand[1].card_value
-	var computer_card_2 = card_manager_ref.cards_in_computer_hand[1].card_value
+	$"../CardSlot2".card_in_the_slot.get_node("AnimationPlayer").play("card_flip")
+	$"../computer_card_slot2".card_in_the_slot.get_node("AnimationPlayer").play("card_flip")
+	var card_2 = $"../CardSlot2".card_in_the_slot.card_value
+	var computer_card_2 = $"../computer_card_slot2".card_in_the_slot.card_value
 	var round_2
 	if card_2 == 100 and computer_card_2 == 100:
 		round_2 = "Draw (both cards are jokers)"
@@ -154,14 +157,14 @@ func _on_trade_pressed():
 		round_2 = "Draw"
 	main_ref.get_node("round_2_result").text = round_2
 
-	await delayed_function(1.0)  # Add 1-second delay
+	await delayed_function(1.5)  # Add 1-second delay
 
 	# Flip card 3
 	$"../card_flip".play()
-	card_manager_ref.cards_in_hand[2].get_node("AnimationPlayer").play("card_flip")
-	card_manager_ref.cards_in_computer_hand[2].get_node("AnimationPlayer").play("card_flip")
-	var card_3 = card_manager_ref.cards_in_hand[2].card_value
-	var computer_card_3 = card_manager_ref.cards_in_computer_hand[2].card_value
+	$"../CardSlot3".card_in_the_slot.get_node("AnimationPlayer").play("card_flip")
+	$"../computer_card_slot3".card_in_the_slot.get_node("AnimationPlayer").play("card_flip")
+	var card_3 = $"../CardSlot3".card_in_the_slot.card_value
+	var computer_card_3 = $"../computer_card_slot3".card_in_the_slot.card_value
 	var round_3
 	if card_3 == 100 and computer_card_3 == 100:
 		round_3 = "Draw (both cards are jokers)"
@@ -182,7 +185,8 @@ func _on_trade_pressed():
 	else:
 		round_3 = "Draw"
 	main_ref.get_node("round_3_result").text = round_3
-	await delayed_function(1.0)
+	
+	await delayed_function(end_of_round_delay)
 	
 	end_of_hand_calculation()
 
@@ -193,11 +197,12 @@ func _on_keep_pressed():
 	$Keep.visible = false
 	main_ref.get_node("peek_text").text = ""
 	# Flip card 1
+	await delayed_function(0.3)
 	$"../card_flip".play()
-	card_manager_ref.cards_in_hand[0].get_node("AnimationPlayer").play("card_flip")
-	card_manager_ref.cards_in_computer_hand[0].get_node("AnimationPlayer").play("card_flip")
-	var card_1 = card_manager_ref.cards_in_hand[0].card_value
-	var computer_card_1 = card_manager_ref.cards_in_computer_hand[0].card_value
+	$"../CardSlot".card_in_the_slot.get_node("AnimationPlayer").play("card_flip")
+	$"../computer_card_slot1".card_in_the_slot.get_node("AnimationPlayer").play("card_flip")
+	var card_1 = $"../CardSlot".card_in_the_slot.card_value
+	var computer_card_1 = $"../computer_card_slot1".card_in_the_slot.card_value
 	var round_1
 	if card_1 == 100 and computer_card_1 == 100:
 		round_1 = "Draw (both cards are jokers)"
@@ -219,14 +224,14 @@ func _on_keep_pressed():
 		round_1 = "Draw"
 	main_ref.get_node("round_1_result").text = round_1
 
-	await delayed_function(1.0)  # Add 1-second delay
+	await delayed_function(1.5)  # Add 1-second delay
 
 	# Flip card 2
 	$"../card_flip".play()
-	card_manager_ref.cards_in_hand[1].get_node("AnimationPlayer").play("card_flip")
-	card_manager_ref.cards_in_computer_hand[1].get_node("AnimationPlayer").play("card_flip")
-	var card_2 = card_manager_ref.cards_in_hand[1].card_value
-	var computer_card_2 = card_manager_ref.cards_in_computer_hand[1].card_value
+	$"../CardSlot2".card_in_the_slot.get_node("AnimationPlayer").play("card_flip")
+	$"../computer_card_slot2".card_in_the_slot.get_node("AnimationPlayer").play("card_flip")
+	var card_2 = $"../CardSlot2".card_in_the_slot.card_value
+	var computer_card_2 = $"../computer_card_slot2".card_in_the_slot.card_value
 	var round_2
 	if card_2 == 100 and computer_card_2 == 100:
 		round_2 = "Draw (both cards are jokers)"
@@ -248,14 +253,14 @@ func _on_keep_pressed():
 		round_2 = "Draw"
 	main_ref.get_node("round_2_result").text = round_2
 
-	await delayed_function(1.0)  # Add 1-second delay
+	await delayed_function(1.5)  # Add 1-second delay
 
 	# Flip card 3
 	$"../card_flip".play()
-	card_manager_ref.cards_in_hand[2].get_node("AnimationPlayer").play("card_flip")
-	card_manager_ref.cards_in_computer_hand[2].get_node("AnimationPlayer").play("card_flip")
-	var card_3 = card_manager_ref.cards_in_hand[2].card_value
-	var computer_card_3 = card_manager_ref.cards_in_computer_hand[2].card_value
+	$"../CardSlot3".card_in_the_slot.get_node("AnimationPlayer").play("card_flip")
+	$"../computer_card_slot3".card_in_the_slot.get_node("AnimationPlayer").play("card_flip")
+	var card_3 = $"../CardSlot3".card_in_the_slot.card_value
+	var computer_card_3 = $"../computer_card_slot3".card_in_the_slot.card_value
 	var round_3
 	if card_3 == 100 and computer_card_3 == 100:
 		round_3 = "Draw (both cards are jokers)"
@@ -277,14 +282,26 @@ func _on_keep_pressed():
 		round_3 = "Draw"
 	main_ref.get_node("round_3_result").text = round_3
 	
-	await delayed_function(1.0)
+	await delayed_function(end_of_round_delay)
 	
 	end_of_hand_calculation()
 
 func end_of_hand_calculation():
 	# the total calulation of point earned and how many rounds won is calculated
+	card_manager_ref.cards_in_hand[0].get_node("AnimationPlayer").play_backwards("card_flip")
+	card_manager_ref.cards_in_computer_hand[0].get_node("AnimationPlayer").play_backwards("card_flip")
+	card_manager_ref.cards_in_hand[1].get_node("AnimationPlayer").play_backwards("card_flip")
+	card_manager_ref.cards_in_computer_hand[1].get_node("AnimationPlayer").play_backwards("card_flip")
+	card_manager_ref.cards_in_hand[2].get_node("AnimationPlayer").play_backwards("card_flip")
+	card_manager_ref.cards_in_computer_hand[2].get_node("AnimationPlayer").play_backwards("card_flip")
+	await delayed_function(0.4)
+	print("POINTS")
+	print("Player: " + str(player_wins))
+	print("Computer: " + str(computer_wins))
+	
 	if player_wins > 10 and computer_wins > 10:
 		end_of_hand_draw()
+	
 	elif player_wins > computer_wins:
 		print("player wins!!")
 		player_hand_ref.animate_card_to_position(card_manager_ref.cards_in_hand[0], player_cards_won_ref.position, 1.0)
@@ -300,7 +317,8 @@ func end_of_hand_calculation():
 		deck_ref.player_won_deck.insert(0,card_manager_ref.cards_in_computer_hand[1])
 		computer_hand_ref.animate_card_to_position(card_manager_ref.cards_in_computer_hand[2], player_cards_won_ref.position, 1.0)
 		deck_ref.player_won_deck.insert(0,card_manager_ref.cards_in_computer_hand[2])
-	else:
+		#print(deck_ref.player_won_deck)
+	elif computer_wins > player_wins:
 		print("Computer wins....")
 		player_hand_ref.animate_card_to_position(card_manager_ref.cards_in_hand[0], computer_cards_won_ref.position, 1.0)
 		deck_ref.computer_won_deck.insert(0,card_manager_ref.cards_in_hand[0])
@@ -315,6 +333,10 @@ func end_of_hand_calculation():
 		deck_ref.computer_won_deck.insert(0,card_manager_ref.cards_in_computer_hand[1])
 		computer_hand_ref.animate_card_to_position(card_manager_ref.cards_in_computer_hand[2], computer_cards_won_ref.position, 1.0)
 		deck_ref.computer_won_deck.insert(0,card_manager_ref.cards_in_computer_hand[2])
+	else:
+		end_of_hand_draw()
+		
+	$"../card_placed".play()
 	$"../CardSlot".card_in_slot = false
 	$"../CardSlot2".card_in_slot = false
 	$"../CardSlot3".card_in_slot = false
@@ -330,9 +352,10 @@ func end_of_hand_calculation():
 	card_manager_ref.computer_slots_filled = [false, false, false]
 	card_manager_ref.cards_in_hand.clear()
 	card_manager_ref.cards_in_computer_hand.clear()
+	await delayed_function(1.0)
 	player_wins = 0
 	computer_wins = 0
-	print(player_hand_ref.player_hand)
+	#print(player_hand_ref.player_hand)
 	win_or_shuffle()
 
 func end_of_hand_draw():
@@ -353,4 +376,21 @@ func end_of_hand_draw():
 	
 func win_or_shuffle():
 	if !player_hand_ref.player_hand:
-		print("test")
+		if !deck_ref.player_won_deck:
+			main_ref.get_node("peek_text").text = "You Lose"
+		else:
+			deck_ref.shuffle_player_won_deck()
+	if !computer_hand_ref.computer_hand:
+		if !deck_ref.computer_won_deck:
+			main_ref.get_node("peek_text").text = "Computer Loses"
+		else:
+			deck_ref.shuffle_computer_won_deck()
+		
+
+
+
+
+
+
+
+

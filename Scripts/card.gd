@@ -5,6 +5,7 @@ signal hovered_off
 
 var starting_position
 
+var card_name
 var card_value
 
 func _ready() -> void:

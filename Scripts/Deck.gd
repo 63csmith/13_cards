@@ -2,6 +2,7 @@ extends Node2D
 
 const CARD_SCENE_PATH = "res://scenes/card.tscn"
 const CARD_DRAW_SPEED = 1
+const NUMBER_OF_CARDS_DEALT = 12
 
 var player_deck = [
 	"2_of_spades", "2_of_hearts", "2_of_diamonds", "2_of_clubs",
@@ -31,16 +32,16 @@ func _ready() -> void:
 	card_db_ref = preload("res://Scripts/card_DB.gd")
 	cards_in_hand = $"../CardManager".cards_in_hand
 	$"../deal".play()
-	for i in range(12):
+	for i in range(NUMBER_OF_CARDS_DEALT):
 		draw_card()
-	for i in range(12):
+	for i in range(NUMBER_OF_CARDS_DEALT):
 		draw_computer_card()
 		
 
 func draw_card():
 	var card_drawn_name = player_deck[0]
 	player_deck.erase(card_drawn_name)
-	
+	#print(card_drawn_name)
 	if player_deck.size() == 0:
 		$Area2D/CollisionShape2D.disabled = true
 		$"Deck img".visible = false
@@ -48,6 +49,7 @@ func draw_card():
 	var card_scene = preload(CARD_SCENE_PATH)
 	var new_card = card_scene.instantiate()
 	var card_img_path = str("res://Assets/cards/"+card_drawn_name+".png")
+	new_card.card_name = card_drawn_name
 	new_card.get_node("CardImg").texture = load(card_img_path)
 	new_card.get_node("card_name").text = str(card_db_ref.CARDS[card_drawn_name][0])
 	new_card.get_node("card_name").visible = false
@@ -121,3 +123,38 @@ func replace_card(trade_slot):
 		new_card.position = trade_slot.position  # Place the new card in the slot's position
 		new_card.get_node("Area2D/CollisionShape2D").disabled = true
 		#print(cards_in_hand)  # Disable collision if needed
+
+func shuffle_player_won_deck():
+	# Shuffle the deck
+	player_won_deck.shuffle()
+	$"../deal".play()
+	# Use a copy of the array to iterate through
+	var deck_copy = player_won_deck.duplicate()
+
+	# Iterate through the copy
+	for card_drawn in deck_copy:
+		# Remove the card from the original deck
+		player_won_deck.erase(card_drawn)
+		
+		# Add the card to the player's hand
+		$"../PlayerHand".add_card_to_hand(card_drawn, CARD_DRAW_SPEED)
+		card_drawn.get_node("Area2D/CollisionShape2D").disabled = false
+
+	#new_card.get_node("AnimationPlayer").play("card_flip")
+	
+func shuffle_computer_won_deck():
+	# Shuffle the deck
+	computer_won_deck.shuffle()
+	$"../deal".play()
+	# Use a copy of the array to iterate through
+	var deck_copy = computer_won_deck.duplicate()
+
+	# Iterate through the copy
+	for card_drawn in deck_copy:
+		# Remove the card from the original deck
+		computer_won_deck.erase(card_drawn)
+		
+		# Add the card to the player's hand
+		$"../ComputerHand".add_card_to_hand(card_drawn, CARD_DRAW_SPEED)
+
+	#new_card.get_node("AnimationPlayer").play("card_flip")

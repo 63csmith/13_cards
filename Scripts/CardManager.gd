@@ -62,9 +62,9 @@ func finish_drag():
 		card_slot_found.card_in_slot = true
 		card_slot_found.card_in_the_slot = card_being_dragged
 		cards_in_hand.append(card_being_dragged)
-		print(cards_in_hand)
+		#print(cards_in_hand)
 		check_all_slots_filled()
-		print(filled_slots)
+		#print(filled_slots)
 		add_card_to_computer_slot_based_on_player()
 	else:
 		player_hand_reference.add_card_to_hand(card_being_dragged, DEFAULT_CARD_SPEED)
@@ -94,6 +94,7 @@ func add_card_to_computer_slot_based_on_player():
 	# Step 3: Get the corresponding slot node for the computer
 	var slot_node_path = "/root/Main/computer_card_slot" + str(target_slot_index + 1)
 	var slot_node = get_node_or_null(slot_node_path)
+	slot_node.card_in_the_slot = computer_card
 	if slot_node == null:
 		push_error("Slot node not found: " + slot_node_path)
 		return
