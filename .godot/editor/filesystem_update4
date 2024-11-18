@@ -6,3 +6,5 @@ res://scenes/deck.tscn
 res://player_cards_won.tscn
 res://Scripts/InputManager.gd
 res://Scripts/Deck.gd
+res://scenes/ComputerHand.gd
+res://Scripts/PlayerHand.gd

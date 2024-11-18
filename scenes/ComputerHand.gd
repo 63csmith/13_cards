@@ -34,10 +34,13 @@ func add_card_to_hand(card, speed):
 	
 func update_hand_positions(speed):
 	for i in range(computer_hand.size()):
-		var new_position = Vector2(calculate_card_position(i), HAND_Y_POSITION)
 		var card = computer_hand[i]
-		card.starting_position = new_position
-		animate_card_to_position(card, new_position, speed)
+		if is_instance_valid(card):  # Ensure the card is still valid
+			var new_position = Vector2(calculate_card_position(i), HAND_Y_POSITION)
+			card.starting_position = new_position
+			animate_card_to_position(card, new_position, speed)
+		else:
+			print("Skipping invalid card at index:", i)
 		
 		
 func calculate_card_position(index):

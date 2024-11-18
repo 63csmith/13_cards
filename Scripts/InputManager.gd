@@ -120,9 +120,11 @@ func play_hand():
 	var computer_card_1 = $"../computer_card_slot1".card_in_the_slot.card_value
 	var round_1
 	if card_1 == 100 and computer_card_1 == 100:
-		round_1 = "Draw (both cards are jokers)"
+		round_1 = "Double jokers"
 		player_wins += 10
 		computer_wins += 10
+		numb_of_jokers_played_by_player += 1
+		numb_of_jokers_played_by_computer += 1
 	elif card_1 == 100:
 		round_1 = "Joker"
 		player_wins += 10
@@ -155,9 +157,11 @@ func play_hand():
 	var computer_card_2 = $"../computer_card_slot2".card_in_the_slot.card_value
 	var round_2
 	if card_2 == 100 and computer_card_2 == 100:
-		round_2 = "Draw (both cards are jokers)"
+		round_2 = "Double jokers"
 		player_wins += 10
 		computer_wins += 10
+		numb_of_jokers_played_by_player += 1
+		numb_of_jokers_played_by_computer += 1
 	elif card_2 == 100:
 		round_2 = "Joker"
 		player_wins += 10
@@ -190,9 +194,11 @@ func play_hand():
 	var computer_card_3 = $"../computer_card_slot3".card_in_the_slot.card_value
 	var round_3
 	if card_3 == 100 and computer_card_3 == 100:
-		round_3 = "Draw (both cards are jokers)"
+		round_3 = "Double joker)"
 		player_wins += 10
 		computer_wins += 10
+		numb_of_jokers_played_by_player += 1
+		numb_of_jokers_played_by_computer += 1
 	elif card_3 == 100:
 		round_3 = "Joker"
 		player_wins += 10
@@ -202,7 +208,7 @@ func play_hand():
 	elif computer_card_3 == 100:
 		round_3 = "Joker"
 		computer_wins += 10
-		joker_card_played_by_computer.append($"../computer_card_slot3".card_in_the_slot) 
+		joker_card_played_by_computer.insert(0,$"../computer_card_slot3".card_in_the_slot) 
 		was_joker_card_played = true
 		numb_of_jokers_played_by_computer += 1
 	elif card_3 > computer_card_3:
@@ -246,9 +252,9 @@ func end_of_hand_calculation():
 		if joker_card_played_by_player:
 			
 			for i in range(numb_of_jokers_played_by_player):
-				player_hand_ref.remove_card_from_hand(joker_card_played_by_player[i])
-				joker_card_played_by_player[i].queue_free()
-				joker_card_played_by_player.erase(joker_card_played_by_player[i])
+				player_hand_ref.remove_card_from_hand(joker_card_played_by_player[0])
+				joker_card_played_by_player[0].queue_free()
+				joker_card_played_by_player.erase(joker_card_played_by_player[0])
 			
 			var loop = numb_of_jokers_played_by_player * 4
 			for i in range(loop):
@@ -274,9 +280,9 @@ func end_of_hand_calculation():
 		if joker_card_played_by_computer:
 			
 			for i in range(numb_of_jokers_played_by_computer):
-				computer_hand_ref.remove_card_from_hand(joker_card_played_by_computer[i])
-				joker_card_played_by_computer[i].queue_free()
-				joker_card_played_by_computer.erase(joker_card_played_by_computer[i])
+				computer_hand_ref.remove_card_from_hand(joker_card_played_by_computer[0])
+				joker_card_played_by_computer[0].queue_free()
+				joker_card_played_by_computer.erase(joker_card_played_by_computer[0])
 			
 			var loop = numb_of_jokers_played_by_computer * 4
 			for i in range(loop):
@@ -318,6 +324,8 @@ func end_of_hand_calculation():
 	computer_wins = 0
 	numb_of_jokers_played_by_player = 0
 	numb_of_jokers_played_by_computer = 0
+	joker_card_played_by_player.clear()
+	joker_card_played_by_computer.clear()
 	#print(player_hand_ref.player_hand)
 	
 	win_or_shuffle()
@@ -339,12 +347,12 @@ func end_of_hand_draw():
 	deck_ref.computer_won_deck.insert(0,card_manager_ref.cards_in_computer_hand[2])
 
 func win_or_shuffle():
-	if !player_hand_ref.player_hand:
+	if player_hand_ref.player_hand.size() < 3:
 		if !deck_ref.player_won_deck:
 			main_ref.get_node("peek_text").text = "You Lose"
 		else:
 			deck_ref.shuffle_player_won_deck()
-	if !computer_hand_ref.computer_hand:
+	if computer_hand_ref.computer_hand.size() < 3:
 		if !deck_ref.computer_won_deck:
 			main_ref.get_node("peek_text").text = "Computer Loses"
 		else:
