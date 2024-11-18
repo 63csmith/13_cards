@@ -18,7 +18,13 @@ var player_deck = [
 	"queen_of_spades", "queen_of_hearts", "queen_of_diamonds", "queen_of_clubs",
 	"king_of_spades", "king_of_hearts", "king_of_diamonds", "king_of_clubs",
 	"ace_of_spades", "ace_of_hearts", "ace_of_diamonds", "ace_of_clubs",
-	"joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker"
+	"joker", "joker"
+	
+	#addtional jokers for testing 🃏
+	#, "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", 
+	#"joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker",
+	#"joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker",
+	#"joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker"
 ];
 
 var card_db_ref

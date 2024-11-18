@@ -27,7 +27,9 @@ var joker_card_played_by_player = []
 var joker_card_played_by_computer = []
 var numb_of_jokers_played_by_player = 0
 var numb_of_jokers_played_by_computer = 0
-
+var restart_button
+var lock_panel 
+var can_click = true
 
 func _ready() -> void:
 	main_ref = $".."
@@ -37,10 +39,14 @@ func _ready() -> void:
 	computer_hand_ref = $"../ComputerHand" 
 	player_cards_won_ref = $"../player_cards_won"
 	computer_cards_won_ref = $"../computer_cards_won"
+	restart_button = $"../ResetButton"
+	lock_panel = $"../LockPanel"
 	$Trade.disabled = true
 	$Trade.visible = false
 	$Keep.disabled = true
 	$Keep.visible = false
+	restart_button.visible = false
+	lock_panel.visible = false
 
 func delayed_function(seconds: float) -> void:
 	var timer = Timer.new()
@@ -66,7 +72,7 @@ func ray_cast_at_cursor():
 	parameters.position = get_global_mouse_position()
 	parameters.collide_with_areas = true
 	var result = space_state.intersect_point(parameters)
-	if result.size() > 0:
+	if result.size() > 0 and can_click:
 		var result_collsion_mask = result[0].collider.collision_mask
 		if result_collsion_mask == COLLISON_MASK_CARD:
 			var card_found = result[0].collider.get_parent()
@@ -112,7 +118,6 @@ func play_hand():
 	$Keep.visible = false
 	main_ref.get_node("peek_text").text = ""
 			# Flip card 1
-	await delayed_function(0.3)
 	$"../card_flip".play()
 	$"../CardSlot".card_in_the_slot.get_node("AnimationPlayer").play("card_flip")
 	$"../computer_card_slot1".card_in_the_slot.get_node("AnimationPlayer").play("card_flip")
@@ -248,16 +253,17 @@ func end_of_hand_calculation():
 	
 	elif player_wins > computer_wins:
 		print("player wins!!")
-
+		
 		if joker_card_played_by_player:
-			
-			for i in range(numb_of_jokers_played_by_player):
-				player_hand_ref.remove_card_from_hand(joker_card_played_by_player[0])
-				joker_card_played_by_player[0].queue_free()
-				joker_card_played_by_player.erase(joker_card_played_by_player[0])
-			
-			var loop = numb_of_jokers_played_by_player * 4
-			for i in range(loop):
+			# Process all joker cards played by the player
+			while joker_card_played_by_player.size() > 0:
+				var card = joker_card_played_by_player[0]
+				player_hand_ref.remove_card_from_hand(card)
+				card.queue_free()
+				joker_card_played_by_player.erase(card)
+
+			# Perform the draw operation for the player
+			for i in range(numb_of_jokers_played_by_player * 4):
 				deck_ref.draw_card()
 				
 		player_hand_ref.animate_card_to_position(card_manager_ref.cards_in_hand[0], player_cards_won_ref.position, 1.0)
@@ -278,14 +284,15 @@ func end_of_hand_calculation():
 		print("Computer wins....")
 		
 		if joker_card_played_by_computer:
-			
-			for i in range(numb_of_jokers_played_by_computer):
-				computer_hand_ref.remove_card_from_hand(joker_card_played_by_computer[0])
-				joker_card_played_by_computer[0].queue_free()
-				joker_card_played_by_computer.erase(joker_card_played_by_computer[0])
-			
-			var loop = numb_of_jokers_played_by_computer * 4
-			for i in range(loop):
+			# Process all joker cards played by the computer
+			while joker_card_played_by_computer.size() > 0:
+				var card = joker_card_played_by_computer[0]
+				computer_hand_ref.remove_card_from_hand(card)
+				card.queue_free()
+				joker_card_played_by_computer.erase(card)
+
+			# Perform the draw operation for the computer
+			for i in range(numb_of_jokers_played_by_computer * 4):
 				deck_ref.draw_computer_card()
 		player_hand_ref.animate_card_to_position(card_manager_ref.cards_in_hand[0], computer_cards_won_ref.position, 1.0)
 		deck_ref.computer_won_deck.insert(0,card_manager_ref.cards_in_hand[0])
@@ -347,20 +354,31 @@ func end_of_hand_draw():
 	deck_ref.computer_won_deck.insert(0,card_manager_ref.cards_in_computer_hand[2])
 
 func win_or_shuffle():
+	can_click = false
 	if player_hand_ref.player_hand.size() < 3:
 		if !deck_ref.player_won_deck:
 			main_ref.get_node("peek_text").text = "You Lose"
+			lock_ui()
+			can_click = false
 		else:
-			deck_ref.shuffle_player_won_deck()
+			await  deck_ref.shuffle_player_won_deck()
 	if computer_hand_ref.computer_hand.size() < 3:
 		if !deck_ref.computer_won_deck:
 			main_ref.get_node("peek_text").text = "Computer Loses"
+			lock_ui()
+			can_click = false
 		else:
-			deck_ref.shuffle_computer_won_deck()
+			await deck_ref.shuffle_computer_won_deck()
+	
+	can_click = true
 
 
 
-
+func lock_ui():
+	lock_panel.visible = true 
+	lock_panel.z_index = 10
+	restart_button.visible = true
+	restart_button.z_index = 11
 
 
 

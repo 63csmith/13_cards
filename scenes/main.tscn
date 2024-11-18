@@ -17,6 +17,27 @@
 [node name="Main" type="Node2D"]
 script = ExtResource("1_jgtar")
 
+[node name="ResetButton" type="Button" parent="."]
+offset_left = 1340.0
+offset_top = 509.0
+offset_right = 1487.0
+offset_bottom = 553.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ResetButton"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 8.0
+offset_right = 135.0
+offset_bottom = 40.0
+mouse_filter = 2
+text = "RESET"
+
+[node name="LockPanel" type="Panel" parent="."]
+offset_right = 2068.0
+offset_bottom = 1034.0
+mouse_filter = 2
+mouse_force_pass_scroll_events = false
+
 [node name="CardManager" type="Node2D" parent="."]
 script = ExtResource("1_tytiv")
 
@@ -124,27 +145,12 @@ stream = ExtResource("9_3vaya")
 [node name="deal" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_gtn28")
 
-[node name="ResetButton" type="Button" parent="."]
-offset_left = 1340.0
-offset_top = 509.0
-offset_right = 1487.0
-offset_bottom = 553.0
-
-[node name="RichTextLabel" type="RichTextLabel" parent="ResetButton"]
-layout_mode = 0
-offset_left = 12.0
-offset_top = 8.0
-offset_right = 135.0
-offset_bottom = 40.0
-mouse_filter = 2
-text = "RESET"
-
 [node name="player_cards_won" parent="." instance=ExtResource("12_85r1q")]
 position = Vector2(1675, 678)
 
 [node name="computer_cards_won" parent="." instance=ExtResource("13_hqxr2")]
 position = Vector2(1671, 335)
 
+[connection signal="pressed" from="ResetButton" to="." method="_on_reset_button_pressed"]
 [connection signal="pressed" from="InputManager/Trade" to="InputManager" method="_on_trade_pressed"]
 [connection signal="pressed" from="InputManager/Keep" to="InputManager" method="_on_keep_pressed"]
-[connection signal="pressed" from="ResetButton" to="." method="_on_reset_button_pressed"]
