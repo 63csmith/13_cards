@@ -22,8 +22,9 @@ var computer_wins = 0
 var player_cards_won_ref
 var computer_cards_won_ref
 var end_of_round_delay = 1.0
-var was_joker_card_played
-var joker_card_played = false
+var was_joker_card_played = false
+var joker_card_played_by_player = []
+var joker_card_played_by_computer = []
 var numb_of_jokers_played_by_player = 0
 var numb_of_jokers_played_by_computer = 0
 
@@ -99,120 +100,12 @@ func ray_cast_at_cursor():
 
 func _on_trade_pressed():
 	deck_ref.replace_card(trade_slot)
-	$Trade.disabled = true
-	$Trade.visible = false
-	$Keep.disabled = true
-	$Keep.visible = false
-	#main_ref.get_node("peek_text").text = ""
-		# Flip card 1
-	await delayed_function(0.3)
-	$"../card_flip".play()
-	$"../CardSlot".card_in_the_slot.get_node("AnimationPlayer").play("card_flip")
-	$"../computer_card_slot1".card_in_the_slot.get_node("AnimationPlayer").play("card_flip")
-	var card_1 = $"../CardSlot".card_in_the_slot.card_value
-	var computer_card_1 = $"../computer_card_slot1".card_in_the_slot.card_value
-	var round_1
-	if card_1 == 100 and computer_card_1 == 100:
-		round_1 = "Draw (both cards are jokers)"
-		player_wins += 10
-		computer_wins += 10
-	elif card_1 == 100:
-		round_1 = "Hand won by player"
-		player_wins += 10
-		joker_card_played = $"../CardSlot".card_in_the_slot
-		was_joker_card_played = true
-		numb_of_jokers_played_by_player =+ 1
-	elif computer_card_1 == 100:
-		round_1 = "Hand won by computer"
-		computer_wins += 10
-		joker_card_played = $"../computer_card_slot1".card_in_the_slot
-		numb_of_jokers_played_by_computer=+ 1
-		was_joker_card_played = true
-	elif card_1 > computer_card_1:
-		round_1 = "Player wins"
-		player_wins += 1
-	elif card_1 < computer_card_1:
-		round_1 = "Computer wins"
-		computer_wins += 1
-	else:
-		round_1 = "Draw"
-	main_ref.get_node("round_1_result").text = round_1
-
-	await delayed_function(1.5)  # Add 1-second delay
-
-	# Flip card 2
-	$"../card_flip".play()
-	$"../CardSlot2".card_in_the_slot.get_node("AnimationPlayer").play("card_flip")
-	$"../computer_card_slot2".card_in_the_slot.get_node("AnimationPlayer").play("card_flip")
-	var card_2 = $"../CardSlot2".card_in_the_slot.card_value
-	var computer_card_2 = $"../computer_card_slot2".card_in_the_slot.card_value
-	var round_2
-	if card_2 == 100 and computer_card_2 == 100:
-		round_2 = "Draw (both cards are jokers)"
-		player_wins += 10
-		computer_wins += 10
-	elif card_2 == 100:
-		round_2 = "Hand won by player"
-		player_wins += 10
-		joker_card_played = $"../CardSlot2".card_in_the_slot
-		was_joker_card_played = true
-		numb_of_jokers_played_by_player =+ 1
-	elif computer_card_2 == 100:
-		round_2 = "Hand won by computer"
-		computer_wins += 10
-		joker_card_played = $"../computer_card_slot2".card_in_the_slot
-		was_joker_card_played = true
-		numb_of_jokers_played_by_computer=+ 1
-	elif card_2 > computer_card_2:
-		round_2 = "Player wins"
-		player_wins += 1
-	elif card_2 < computer_card_2:
-		round_2 = "Computer wins"
-		computer_wins += 1
-	else:
-		round_2 = "Draw"
-	main_ref.get_node("round_2_result").text = round_2
-
-	await delayed_function(1.5)  # Add 1-second delay
-
-	# Flip card 3
-	$"../card_flip".play()
-	$"../CardSlot3".card_in_the_slot.get_node("AnimationPlayer").play("card_flip")
-	$"../computer_card_slot3".card_in_the_slot.get_node("AnimationPlayer").play("card_flip")
-	var card_3 = $"../CardSlot3".card_in_the_slot.card_value
-	var computer_card_3 = $"../computer_card_slot3".card_in_the_slot.card_value
-	var round_3
-	if card_3 == 100 and computer_card_3 == 100:
-		round_3 = "Draw (both cards are jokers)"
-		player_wins += 10
-		computer_wins += 10
-	elif card_3 == 100:
-		round_3 = "Hand won by player"
-		player_wins += 10
-		joker_card_played = $"../CardSlot3".card_in_the_slot
-		was_joker_card_played = true
-		numb_of_jokers_played_by_player =+ 1
-	elif computer_card_3 == 100:
-		round_3 = "Hand won by computer"
-		computer_wins += 10
-		joker_card_played = $"../computer_card_slot3".card_in_the_slot
-		was_joker_card_played = true
-		numb_of_jokers_played_by_computer=+ 1
-	elif card_3 > computer_card_3:
-		round_3 = "Player wins"
-		player_wins += 1
-	elif card_3 < computer_card_3:
-		round_3 = "Computer wins"
-		computer_wins += 1
-	else:
-		round_3 = "Draw"
-	main_ref.get_node("round_3_result").text = round_3
-	
-	await delayed_function(end_of_round_delay)
-	
-	end_of_hand_calculation()
+	play_hand()
 
 func _on_keep_pressed():
+	play_hand()
+	
+func play_hand():
 	$Trade.disabled = true
 	$Trade.visible = false
 	$Keep.disabled = true
@@ -231,16 +124,16 @@ func _on_keep_pressed():
 		player_wins += 10
 		computer_wins += 10
 	elif card_1 == 100:
-		round_1 = "Hand won by player"
+		round_1 = "Joker"
 		player_wins += 10
-		joker_card_played = $"../CardSlot".card_in_the_slot
+		joker_card_played_by_player.append($"../CardSlot".card_in_the_slot) 
 		was_joker_card_played = true
-		numb_of_jokers_played_by_player =+ 1
+		numb_of_jokers_played_by_player += 1
 	elif computer_card_1 == 100:
-		round_1 = "Hand won by computer"
+		round_1 = "Joker"
 		computer_wins += 10
-		joker_card_played = $"../computer_card_slot1".card_in_the_slot
-		numb_of_jokers_played_by_computer=+ 1
+		joker_card_played_by_computer.append($"../computer_card_slot1".card_in_the_slot) 
+		numb_of_jokers_played_by_computer += 1
 		was_joker_card_played = true
 	elif card_1 > computer_card_1:
 		round_1 = "Player wins"
@@ -266,17 +159,17 @@ func _on_keep_pressed():
 		player_wins += 10
 		computer_wins += 10
 	elif card_2 == 100:
-		round_2 = "Hand won by player"
+		round_2 = "Joker"
 		player_wins += 10
-		joker_card_played = $"../CardSlot2".card_in_the_slot
+		joker_card_played_by_player.append($"../CardSlot2".card_in_the_slot) 
 		was_joker_card_played = true
-		numb_of_jokers_played_by_player =+ 1
+		numb_of_jokers_played_by_player += 1
 	elif computer_card_2 == 100:
-		round_2 = "Hand won by computer"
+		round_2 = "Joker"
 		computer_wins += 10
-		joker_card_played = $"../computer_card_slot2".card_in_the_slot
+		joker_card_played_by_computer.append($"../computer_card_slot2".card_in_the_slot) 
 		was_joker_card_played = true
-		numb_of_jokers_played_by_computer=+ 1
+		numb_of_jokers_played_by_computer += 1
 	elif card_2 > computer_card_2:
 		round_2 = "Player wins"
 		player_wins += 1
@@ -301,17 +194,17 @@ func _on_keep_pressed():
 		player_wins += 10
 		computer_wins += 10
 	elif card_3 == 100:
-		round_3 = "Hand won by player"
+		round_3 = "Joker"
 		player_wins += 10
-		joker_card_played = $"../CardSlot3".card_in_the_slot
+		joker_card_played_by_player.append($"../CardSlot3".card_in_the_slot) 
 		was_joker_card_played = true
-		numb_of_jokers_played_by_player =+ 1
+		numb_of_jokers_played_by_player += 1
 	elif computer_card_3 == 100:
-		round_3 = "Hand won by computer"
+		round_3 = "Joker"
 		computer_wins += 10
-		joker_card_played = $"../computer_card_slot3".card_in_the_slot
+		joker_card_played_by_computer.append($"../computer_card_slot3".card_in_the_slot) 
 		was_joker_card_played = true
-		numb_of_jokers_played_by_computer=+ 1
+		numb_of_jokers_played_by_computer += 1
 	elif card_3 > computer_card_3:
 		round_3 = "Player wins"
 		player_wins += 1
@@ -325,7 +218,11 @@ func _on_keep_pressed():
 	await delayed_function(end_of_round_delay)
 	
 	end_of_hand_calculation()
-
+	print(numb_of_jokers_played_by_player)
+	print(numb_of_jokers_played_by_computer)
+	print(joker_card_played_by_computer)
+	print(joker_card_played_by_player)
+	
 func end_of_hand_calculation():
 	# the total calulation of point earned and how many rounds won is calculated
 	card_manager_ref.cards_in_hand[0].get_node("AnimationPlayer").play_backwards("card_flip")
@@ -340,18 +237,23 @@ func end_of_hand_calculation():
 	print("Player: " + str(player_wins))
 	print("Computer: " + str(computer_wins))
 	
-	if player_wins > 10 and computer_wins > 10:
+	if numb_of_jokers_played_by_player > 0 and numb_of_jokers_played_by_computer > 0 and numb_of_jokers_played_by_player == numb_of_jokers_played_by_computer:
 		end_of_hand_draw()
 	
 	elif player_wins > computer_wins:
 		print("player wins!!")
 
-		if joker_card_played:
-			joker_card_played.queue_free()
-			joker_card_played = false
-			var loop = numb_of_jokers_played_by_player * 3
+		if joker_card_played_by_player:
+			
+			for i in range(numb_of_jokers_played_by_player):
+				player_hand_ref.remove_card_from_hand(joker_card_played_by_player[i])
+				joker_card_played_by_player[i].queue_free()
+				joker_card_played_by_player.erase(joker_card_played_by_player[i])
+			
+			var loop = numb_of_jokers_played_by_player * 4
 			for i in range(loop):
 				deck_ref.draw_card()
+				
 		player_hand_ref.animate_card_to_position(card_manager_ref.cards_in_hand[0], player_cards_won_ref.position, 1.0)
 		deck_ref.player_won_deck.insert(0,card_manager_ref.cards_in_hand[0])
 		player_hand_ref.animate_card_to_position(card_manager_ref.cards_in_hand[1], player_cards_won_ref.position, 1.0)
@@ -368,11 +270,15 @@ func end_of_hand_calculation():
 		#print(deck_ref.player_won_deck)
 	elif computer_wins > player_wins:
 		print("Computer wins....")
-
-		if joker_card_played:
-			joker_card_played.queue_free()
-			joker_card_played = false
-			var loop = numb_of_jokers_played_by_player * 3
+		
+		if joker_card_played_by_computer:
+			
+			for i in range(numb_of_jokers_played_by_computer):
+				computer_hand_ref.remove_card_from_hand(joker_card_played_by_computer[i])
+				joker_card_played_by_computer[i].queue_free()
+				joker_card_played_by_computer.erase(joker_card_played_by_computer[i])
+			
+			var loop = numb_of_jokers_played_by_computer * 4
 			for i in range(loop):
 				deck_ref.draw_computer_card()
 		player_hand_ref.animate_card_to_position(card_manager_ref.cards_in_hand[0], computer_cards_won_ref.position, 1.0)
