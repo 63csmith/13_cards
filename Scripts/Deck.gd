@@ -134,33 +134,51 @@ func shuffle_player_won_deck():
 	# Shuffle the deck
 	player_won_deck.shuffle()
 	$"../deal".play()
-	# Use a copy of the array to iterate through
-	var deck_copy = player_won_deck.duplicate()
+
+	# Use a deep copy of the array to iterate through
+	var deck_copy = player_won_deck.duplicate(true)
 
 	# Iterate through the copy
 	for card_drawn in deck_copy:
+		if card_drawn == null:
+			print("Error: card_drawn is null!")
+			continue
+
 		# Remove the card from the original deck
 		player_won_deck.erase(card_drawn)
-		
+
 		# Add the card to the player's hand
 		$"../PlayerHand".add_card_to_hand(card_drawn, CARD_DRAW_SPEED)
-		card_drawn.get_node("Area2D/CollisionShape2D").disabled = false
 
-	#new_card.get_node("AnimationPlayer").play("card_flip")
+		# Check if card has the expected node structure
+		if card_drawn.has_node("Area2D/CollisionShape2D"):
+			card_drawn.get_node("Area2D/CollisionShape2D").disabled = false
+		else:
+			print("Warning: Card does not have the expected node structure!")
+
 	
 func shuffle_computer_won_deck():
 	# Shuffle the deck
 	computer_won_deck.shuffle()
 	$"../deal".play()
-	# Use a copy of the array to iterate through
-	var deck_copy = computer_won_deck.duplicate()
+
+	# Use a deep copy of the array to iterate through
+	var deck_copy = computer_won_deck.duplicate(true)
 
 	# Iterate through the copy
 	for card_drawn in deck_copy:
+		if card_drawn == null:
+			print("Error: card_drawn is null!")
+			continue
+
 		# Remove the card from the original deck
 		computer_won_deck.erase(card_drawn)
-		
+
 		# Add the card to the player's hand
 		$"../ComputerHand".add_card_to_hand(card_drawn, CARD_DRAW_SPEED)
 
-	#new_card.get_node("AnimationPlayer").play("card_flip")
+		# Check if card has the expected node structure
+		if card_drawn.has_node("Area2D/CollisionShape2D"):
+			card_drawn.get_node("Area2D/CollisionShape2D").disabled = true
+		else:
+			print("Warning: Card does not have the expected node structure!")

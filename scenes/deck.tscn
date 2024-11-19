@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bq1xl5bkta8fx"]
 
 [ext_resource type="Script" path="res://Scripts/Deck.gd" id="1_061ny"]
-[ext_resource type="Texture2D" uid="uid://b7dtuwmdl287e" path="res://Assets/Card_back_placeholder_simple.png" id="2_1ff13"]
+[ext_resource type="Texture2D" uid="uid://b8xxggvx3pcp4" path="res://Assets/gold_eye_card.png" id="2_qdhga"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8h2oi"]
 size = Vector2(137, 194)
@@ -20,7 +20,7 @@ offset_bottom = 45.0
 z_index = -2
 position = Vector2(2.99997, -4.76837e-06)
 scale = Vector2(0.536965, 0.466667)
-texture = ExtResource("2_1ff13")
+texture = ExtResource("2_qdhga")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 4

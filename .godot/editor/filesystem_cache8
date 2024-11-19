@@ -1,11 +1,12 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1731895019
+::res://::1731981792
 computer_cards_won.tscn::PackedScene::752060285110024437::1731780819::0::1::::<><>::uid://cra36ytpq0y18::::res://Assets/CardSlot.png
-player_cards_won.tscn::PackedScene::4565923114116213019::1731806323::0::1::::<><>::uid://cra36ytpq0y18::::res://Assets/CardSlot.png
+player_cards_won.tscn::PackedScene::4565923114116213019::1731981751::0::1::::<><>::uid://cra36ytpq0y18::::res://Assets/CardSlot.png
 README.md::TextFile::-1::1731460878::0::1::::<><>::
-::res://Assets/::1731638644
+::res://Assets/::1731981791
 CardSlot.png::CompressedTexture2D::5967808435256876765::1731262711::1731291748::1::::<><>::
 Card_back_placeholder_simple.png::CompressedTexture2D::4639847326316439984::1731459823::1731459823::1::::<><>::
+gold_eye_card.png::CompressedTexture2D::4751540766352620795::1731981742::1731981792::1::::<><>::
 icon.svg::CompressedTexture2D::6669914209548602434::1730666413::1731291788::1::::<><>::
 magnifier.png::CompressedTexture2D::2796912279794311726::1731471406::1731471411::1::::<><>::
 ::res://Assets/cards/::1731805035
@@ -66,21 +67,21 @@ queen_of_spades.png::CompressedTexture2D::1242939623359760523::1731642987::17316
 Card Dealing.wav::AudioStreamWAV::5784673825756875197::1731551787::1731551787::1::::<><>::
 Card Flip.wav::AudioStreamWAV::2736196387410332738::1731551787::1731551787::1::::<><>::
 Card Placed.wav::AudioStreamWAV::6661218900431614239::1731551787::1731551787::1::::<><>::
-::res://scenes/::1731806460
-card.tscn::PackedScene::6268055473088901875::1731806323::0::1::::<><>::res://Scripts/card.gd<>uid://b7dtuwmdl287e::::res://Assets/Card_back_placeholder_simple.png<>uid://bq6igyub3vll::::res://Assets/cards/2_of_clubs.png
-card_slot.tscn::PackedScene::1390772462671071254::1731806323::0::1::::<><>::res://Scripts/card_slot.gd<>uid://cra36ytpq0y18::::res://Assets/CardSlot.png
-ComputerHand.gd::GDScript::-1::1731477539::0::1::::<>Node2D<>::
-computer_card_slot.tscn::PackedScene::7514250411271713057::1731806323::0::1::::<><>::res://Scripts/computer_card_slot.gd<>uid://cra36ytpq0y18::::res://Assets/CardSlot.png
-deck.tscn::PackedScene::3564533715798847605::1731806323::0::1::::<><>::res://Scripts/Deck.gd<>uid://b7dtuwmdl287e::::res://Assets/Card_back_placeholder_simple.png
+::res://scenes/::1731981791
+card.tscn::PackedScene::6268055473088901875::1731981791::0::1::::<><>::res://Scripts/card.gd<>uid://b8xxggvx3pcp4::::res://Assets/gold_eye_card.png<>uid://bq6igyub3vll::::res://Assets/cards/2_of_clubs.png
+card_slot.tscn::PackedScene::1390772462671071254::1731981751::0::1::::<><>::res://Scripts/card_slot.gd<>uid://cra36ytpq0y18::::res://Assets/CardSlot.png
+ComputerHand.gd::GDScript::-1::1731898967::0::1::::<>Node2D<>::
+computer_card_slot.tscn::PackedScene::7514250411271713057::1731981751::0::1::::<><>::res://Scripts/computer_card_slot.gd<>uid://cra36ytpq0y18::::res://Assets/CardSlot.png
+deck.tscn::PackedScene::3564533715798847605::1731981751::0::1::::<><>::res://Scripts/Deck.gd<>uid://b7dtuwmdl287e::::res://Assets/Card_back_placeholder_simple.png
 main.gd::GDScript::-1::1731694708::0::1::::<>Node2D<>::
-main.tscn::PackedScene::2617526545541531948::1731806460::0::1::::<><>::res://scenes/main.gd<>res://Scripts/CardManager.gd<>uid://t2x24comwsty::::res://scenes/card_slot.tscn<>uid://dfb7uvbbpxsvh::::res://scenes/computer_card_slot.tscn<>res://Scripts/PlayerHand.gd<>res://scenes/ComputerHand.gd<>uid://bq1xl5bkta8fx::::res://scenes/deck.tscn<>res://Scripts/InputManager.gd<>uid://be8o0wqgxv0hy::::res://Assets/Sounds/Card Flip.wav<>uid://c150kjgyflvbb::::res://Assets/Sounds/Card Placed.wav<>uid://cooey6cl7o382::::res://Assets/Sounds/Card Dealing.wav<>uid://b6b1c7dynwevb::::res://player_cards_won.tscn<>uid://kykk8n6da3un::::res://computer_cards_won.tscn
+main.tscn::PackedScene::2617526545541531948::1731981751::0::1::::<><>::res://scenes/main.gd<>res://Scripts/CardManager.gd<>uid://t2x24comwsty::::res://scenes/card_slot.tscn<>uid://dfb7uvbbpxsvh::::res://scenes/computer_card_slot.tscn<>res://Scripts/PlayerHand.gd<>res://scenes/ComputerHand.gd<>uid://bq1xl5bkta8fx::::res://scenes/deck.tscn<>res://Scripts/InputManager.gd<>uid://be8o0wqgxv0hy::::res://Assets/Sounds/Card Flip.wav<>uid://c150kjgyflvbb::::res://Assets/Sounds/Card Placed.wav<>uid://cooey6cl7o382::::res://Assets/Sounds/Card Dealing.wav<>uid://b6b1c7dynwevb::::res://player_cards_won.tscn<>uid://kykk8n6da3un::::res://computer_cards_won.tscn
 ResetButton.gd::GDScript::-1::1731694668::0::1::::<>Button<>::
-::res://Scripts/::1731806456
+::res://Scripts/::1731981111
 card.gd::GDScript::-1::1731792846::0::1::::<>Node2D<>::
-CardManager.gd::GDScript::-1::1731801687::0::1::::<>Node2D<>::
+CardManager.gd::GDScript::-1::1731981111::0::1::::<>Node2D<>::
 card_DB.gd::GDScript::-1::1731805096::0::1::::<>RefCounted<>::
 card_slot.gd::GDScript::-1::1731471778::0::1::::<>Node2D<>::
 computer_card_slot.gd::GDScript::-1::1731801445::0::1::::<>Node2D<>::
-Deck.gd::GDScript::-1::1731806456::0::1::::<>Node2D<>::
-InputManager.gd::GDScript::-1::1731806316::0::1::::<>Node2D<>::
-PlayerHand.gd::GDScript::-1::1731778550::0::1::::<>Node2D<>::
+Deck.gd::GDScript::-1::1731902793::0::1::::<>Node2D<>::
+InputManager.gd::GDScript::-1::1731980975::0::1::::<>Node2D<>::
+PlayerHand.gd::GDScript::-1::1731904356::0::1::::<>Node2D<>::

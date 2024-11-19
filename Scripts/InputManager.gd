@@ -87,7 +87,7 @@ func ray_cast_at_cursor():
 				$"../card_flip".play()
 				main_ref.get_node("peek_text").text = ""
 				#print(slot_found.card_in_the_slot)
-				slot_found.card_in_the_slot.scale = Vector2(1.01, 1.01)
+				#slot_found.card_in_the_slot.scale = Vector2(1.01, 1.01)
 				#slot_found.card_in_the_slot.get_node("card_name").visible = true
 				trade_slot = slot_found
 				trade_card = slot_found.card_in_the_slot

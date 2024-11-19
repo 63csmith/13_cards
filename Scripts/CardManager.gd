@@ -52,7 +52,7 @@ func start_drag(card):
 	card.z_index = 3	
 
 func finish_drag():
-	card_being_dragged.scale = Vector2(1, 1)
+	card_being_dragged.scale = Vector2(1.0, 1.0)
 	var card_slot_found = check_for_card_slot()
 	$"../card_placed".play()
 	if card_slot_found and not card_slot_found.card_in_slot:
@@ -153,7 +153,7 @@ func highlight_card(card, hovered):
 		card.scale = Vector2(1.1, 1.1)
 		card.z_index = 2
 	else :
-		card.scale = Vector2(1, 1)
+		card.scale = Vector2(1.0, 1.0)
 		card.z_index = 1
 
 func check_for_card_slot():

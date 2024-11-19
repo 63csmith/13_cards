@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cvkj7tkax34mx"]
 
 [ext_resource type="Script" path="res://Scripts/card.gd" id="1_uxfb2"]
-[ext_resource type="Texture2D" uid="uid://b7dtuwmdl287e" path="res://Assets/Card_back_placeholder_simple.png" id="2_umhwc"]
+[ext_resource type="Texture2D" uid="uid://b8xxggvx3pcp4" path="res://Assets/gold_eye_card.png" id="2_rmchx"]
 [ext_resource type="Texture2D" uid="uid://bq6igyub3vll" path="res://Assets/cards/2_of_clubs.png" id="3_anntc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_25gnx"]
@@ -116,13 +116,13 @@ _data = {
 }
 
 [node name="Card" type="Node2D"]
-position = Vector2(900, 200)
+position = Vector2(1242, 539)
 script = ExtResource("1_uxfb2")
 
 [node name="CardImgBack" type="Sprite2D" parent="."]
 position = Vector2(0.875, 1)
 scale = Vector2(0.506809, 0.442857)
-texture = ExtResource("2_umhwc")
+texture = ExtResource("2_rmchx")
 
 [node name="CardImg" type="Sprite2D" parent="."]
 z_index = -1
