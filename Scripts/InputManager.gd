@@ -354,7 +354,7 @@ func end_of_hand_draw():
 	deck_ref.computer_won_deck.insert(0,card_manager_ref.cards_in_computer_hand[2])
 
 func win_or_shuffle():
-	can_click = false
+	
 	if player_hand_ref.player_hand.size() < 3:
 		if !deck_ref.player_won_deck:
 			main_ref.get_node("peek_text").text = "You Lose"
@@ -362,6 +362,7 @@ func win_or_shuffle():
 			can_click = false
 		else:
 			await  deck_ref.shuffle_player_won_deck()
+			can_click = true
 	if computer_hand_ref.computer_hand.size() < 3:
 		if !deck_ref.computer_won_deck:
 			main_ref.get_node("peek_text").text = "Computer Loses"
@@ -369,8 +370,9 @@ func win_or_shuffle():
 			can_click = false
 		else:
 			await deck_ref.shuffle_computer_won_deck()
+			can_click = true
 	
-	can_click = true
+	
 
 
 
@@ -379,6 +381,7 @@ func lock_ui():
 	lock_panel.z_index = 10
 	restart_button.visible = true
 	restart_button.z_index = 11
+	can_click = false
 
 
 
