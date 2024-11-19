@@ -228,20 +228,19 @@ func play_hand():
 	
 	await delayed_function(end_of_round_delay)
 	
-	end_of_hand_calculation()
+	print("CHECK HERE")
 	print(numb_of_jokers_played_by_player)
 	print(numb_of_jokers_played_by_computer)
 	print(joker_card_played_by_computer)
 	print(joker_card_played_by_player)
+	print("CHECK HERE")
+	end_of_hand_calculation()
 	
 func end_of_hand_calculation():
-	# the total calulation of point earned and how many rounds won is calculated
-	card_manager_ref.cards_in_hand[0].get_node("AnimationPlayer").play_backwards("card_flip")
-	card_manager_ref.cards_in_computer_hand[0].get_node("AnimationPlayer").play_backwards("card_flip")
-	card_manager_ref.cards_in_hand[1].get_node("AnimationPlayer").play_backwards("card_flip")
-	card_manager_ref.cards_in_computer_hand[1].get_node("AnimationPlayer").play_backwards("card_flip")
-	card_manager_ref.cards_in_hand[2].get_node("AnimationPlayer").play_backwards("card_flip")
-	card_manager_ref.cards_in_computer_hand[2].get_node("AnimationPlayer").play_backwards("card_flip")
+	# The total calculation of points earned and how many rounds won is calculated
+	for i in range(3):  # Simplify repeated calls using a loop
+		card_manager_ref.cards_in_hand[i].get_node("AnimationPlayer").play_backwards("card_flip")
+		card_manager_ref.cards_in_computer_hand[i].get_node("AnimationPlayer").play_backwards("card_flip")
 	await delayed_function(0.4)
 
 	print("POINTS")
@@ -250,66 +249,70 @@ func end_of_hand_calculation():
 	
 	if numb_of_jokers_played_by_player > 0 and numb_of_jokers_played_by_computer > 0 and numb_of_jokers_played_by_player == numb_of_jokers_played_by_computer:
 		end_of_hand_draw()
-	
 	elif player_wins > computer_wins:
-		print("player wins!!")
+		print("Player wins!!")
 		
-		if joker_card_played_by_player:
-			# Process all joker cards played by the player
-			while joker_card_played_by_player.size() > 0:
-				var card = joker_card_played_by_player[0]
-				player_hand_ref.remove_card_from_hand(card)
-				card.queue_free()
-				joker_card_played_by_player.erase(card)
+		# Burn the Joker cards the player used
+		while joker_card_played_by_player.size() > 0:
+			var card = joker_card_played_by_player[0]
+			player_hand_ref.remove_card_from_hand(card)
+			joker_card_played_by_player.erase(card)
+			card.queue_free()
 
-			# Perform the draw operation for the player
-			for i in range(numb_of_jokers_played_by_player * 4):
-				deck_ref.draw_card()
-				
-		player_hand_ref.animate_card_to_position(card_manager_ref.cards_in_hand[0], player_cards_won_ref.position, 1.0)
-		deck_ref.player_won_deck.insert(0,card_manager_ref.cards_in_hand[0])
-		player_hand_ref.animate_card_to_position(card_manager_ref.cards_in_hand[1], player_cards_won_ref.position, 1.0)
-		deck_ref.player_won_deck.insert(0,card_manager_ref.cards_in_hand[1])
-		player_hand_ref.animate_card_to_position(card_manager_ref.cards_in_hand[2], player_cards_won_ref.position, 1.0)
-		deck_ref.player_won_deck.insert(0,card_manager_ref.cards_in_hand[2])
+		# Perform the draw operation for the player
+		for i in range(numb_of_jokers_played_by_player * 4):
+			deck_ref.draw_card()
 		
-		computer_hand_ref.animate_card_to_position(card_manager_ref.cards_in_computer_hand[0], player_cards_won_ref.position, 1.0)
-		deck_ref.player_won_deck.insert(0,card_manager_ref.cards_in_computer_hand[0])
-		computer_hand_ref.animate_card_to_position(card_manager_ref.cards_in_computer_hand[1], player_cards_won_ref.position, 1.0)
-		deck_ref.player_won_deck.insert(0,card_manager_ref.cards_in_computer_hand[1])
-		computer_hand_ref.animate_card_to_position(card_manager_ref.cards_in_computer_hand[2], player_cards_won_ref.position, 1.0)
-		deck_ref.player_won_deck.insert(0,card_manager_ref.cards_in_computer_hand[2])
-		#print(deck_ref.player_won_deck)
+		# Add cards to the player's won deck, keeping unplayed Jokers
+		for i in range(3):
+			var player_card = card_manager_ref.cards_in_hand[i]
+			var computer_card = card_manager_ref.cards_in_computer_hand[i]
+
+			if is_joker(player_card):
+				# Keep the Joker in the won deck if it was not part of the played hand
+				player_hand_ref.animate_card_to_position(player_card, player_cards_won_ref.position, 1.0)
+				deck_ref.player_won_deck.insert(0, player_card)
+			elif not is_joker(player_card):
+				player_hand_ref.animate_card_to_position(player_card, player_cards_won_ref.position, 1.0)
+				deck_ref.player_won_deck.insert(0, player_card)
+			
+			if not is_joker(computer_card):
+				computer_hand_ref.animate_card_to_position(computer_card, player_cards_won_ref.position, 1.0)
+				deck_ref.player_won_deck.insert(0, computer_card)
 	elif computer_wins > player_wins:
 		print("Computer wins....")
 		
-		if joker_card_played_by_computer:
-			# Process all joker cards played by the computer
-			while joker_card_played_by_computer.size() > 0:
-				var card = joker_card_played_by_computer[0]
-				computer_hand_ref.remove_card_from_hand(card)
-				card.queue_free()
-				joker_card_played_by_computer.erase(card)
+		# Burn the Joker cards the computer used
+		while joker_card_played_by_computer.size() > 0:
+			var card = joker_card_played_by_computer[0]
+			computer_hand_ref.remove_card_from_hand(card)
+			joker_card_played_by_computer.erase(card)
+			card.queue_free()
 
-			# Perform the draw operation for the computer
-			for i in range(numb_of_jokers_played_by_computer * 4):
-				deck_ref.draw_computer_card()
-		player_hand_ref.animate_card_to_position(card_manager_ref.cards_in_hand[0], computer_cards_won_ref.position, 1.0)
-		deck_ref.computer_won_deck.insert(0,card_manager_ref.cards_in_hand[0])
-		player_hand_ref.animate_card_to_position(card_manager_ref.cards_in_hand[1], computer_cards_won_ref.position, 1.0)
-		deck_ref.computer_won_deck.insert(0,card_manager_ref.cards_in_hand[1])
-		player_hand_ref.animate_card_to_position(card_manager_ref.cards_in_hand[2], computer_cards_won_ref.position, 1.0)
-		deck_ref.computer_won_deck.insert(0,card_manager_ref.cards_in_hand[2])
-		
-		computer_hand_ref.animate_card_to_position(card_manager_ref.cards_in_computer_hand[0], computer_cards_won_ref.position, 1.0)
-		deck_ref.computer_won_deck.insert(0,card_manager_ref.cards_in_computer_hand[0])
-		computer_hand_ref.animate_card_to_position(card_manager_ref.cards_in_computer_hand[1], computer_cards_won_ref.position, 1.0)
-		deck_ref.computer_won_deck.insert(0,card_manager_ref.cards_in_computer_hand[1])
-		computer_hand_ref.animate_card_to_position(card_manager_ref.cards_in_computer_hand[2], computer_cards_won_ref.position, 1.0)
-		deck_ref.computer_won_deck.insert(0,card_manager_ref.cards_in_computer_hand[2])
+		# Perform the draw operation for the computer
+		for i in range(numb_of_jokers_played_by_computer * 4):
+			deck_ref.draw_computer_card()
+
+		# Add cards to the computer's won deck, keeping unplayed Jokers
+		for i in range(3):
+			var player_card = card_manager_ref.cards_in_hand[i]
+			var computer_card = card_manager_ref.cards_in_computer_hand[i]
+
+			if is_joker(computer_card):
+				# Keep the Joker in the won deck if it was not part of the played hand
+				computer_hand_ref.animate_card_to_position(computer_card, computer_cards_won_ref.position, 1.0)
+				deck_ref.computer_won_deck.insert(0, computer_card)
+			elif not is_joker(player_card):
+				player_hand_ref.animate_card_to_position(player_card, computer_cards_won_ref.position, 1.0)
+				deck_ref.computer_won_deck.insert(0, player_card)
+
+			if not is_joker(computer_card):
+				computer_hand_ref.animate_card_to_position(computer_card, computer_cards_won_ref.position, 1.0)
+				deck_ref.computer_won_deck.insert(0, computer_card)
 	else:
 		end_of_hand_draw()
-		
+
+	# Reset game state
 	$"../card_placed".play()
 	$"../CardSlot".card_in_slot = false
 	$"../CardSlot2".card_in_slot = false
@@ -321,8 +324,7 @@ func end_of_hand_calculation():
 	main_ref.get_node("round_2_result").text = ""
 	main_ref.get_node("round_3_result").text = ""
 	can_peek = true
-	#card_manager_ref.target_slot_index = -1
-	card_manager_ref.player_slots_filled = [false, false, false]  # False = empty, True = filled
+	card_manager_ref.player_slots_filled = [false, false, false]
 	card_manager_ref.computer_slots_filled = [false, false, false]
 	card_manager_ref.cards_in_hand.clear()
 	card_manager_ref.cards_in_computer_hand.clear()
@@ -333,9 +335,12 @@ func end_of_hand_calculation():
 	numb_of_jokers_played_by_computer = 0
 	joker_card_played_by_player.clear()
 	joker_card_played_by_computer.clear()
-	#print(player_hand_ref.player_hand)
-	
+
 	win_or_shuffle()
+
+# Function to check if a card is a Joker
+func is_joker(card):
+	return card.card_name == "joker"  
 
 func end_of_hand_draw():
 	#each "player" gets cards back
@@ -371,7 +376,8 @@ func win_or_shuffle():
 		else:
 			await deck_ref.shuffle_computer_won_deck()
 			can_click = true
-	
+	print(player_hand_ref.player_hand)
+	print(computer_hand_ref.computer_hand)
 	
 
 

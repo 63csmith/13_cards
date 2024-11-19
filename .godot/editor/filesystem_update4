@@ -1,9 +1,8 @@
 res://scenes/card.tscn
+res://Scripts/Deck.gd
+res://Scripts/InputManager.gd
 res://scenes/main.tscn
 res://scenes/card_slot.tscn
 res://scenes/computer_card_slot.tscn
 res://scenes/deck.tscn
 res://player_cards_won.tscn
-res://Scripts/InputManager.gd
-res://Scripts/CardManager.gd
-res://Scripts/Deck.gd

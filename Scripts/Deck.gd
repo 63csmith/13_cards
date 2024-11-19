@@ -21,10 +21,10 @@ var player_deck = [
 	"joker", "joker"
 	
 	#addtional jokers for testing 🃏
-	#, "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", 
-	#"joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker",
-	#"joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker",
-	#"joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker"
+	, "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker",
+	"joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker",
+	"joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker",
+	"joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker"
 ];
 
 var card_db_ref
@@ -155,8 +155,7 @@ func shuffle_player_won_deck():
 			card_drawn.get_node("Area2D/CollisionShape2D").disabled = false
 		else:
 			print("Warning: Card does not have the expected node structure!")
-
-	
+	print(player_won_deck)
 func shuffle_computer_won_deck():
 	# Shuffle the deck
 	computer_won_deck.shuffle()
@@ -182,3 +181,4 @@ func shuffle_computer_won_deck():
 			card_drawn.get_node("Area2D/CollisionShape2D").disabled = true
 		else:
 			print("Warning: Card does not have the expected node structure!")
+	print(computer_won_deck)
