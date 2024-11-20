@@ -21,10 +21,10 @@ var player_deck = [
 	"joker", "joker"
 	
 	#addtional jokers for testing 🃏
-	, "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker",
-	"joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker",
-	"joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker",
-	"joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker"
+	#, "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker",
+	#"joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker",
+	#"joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker",
+	#"joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker", "joker"
 ];
 
 var card_db_ref
