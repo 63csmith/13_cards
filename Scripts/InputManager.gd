@@ -17,6 +17,7 @@ var computer_hand_ref
 var can_peek = true
 var trade_slot
 var trade_card
+var x_cursor
 var player_wins = 0
 var computer_wins = 0
 var player_cards_won_ref
@@ -30,6 +31,7 @@ var numb_of_jokers_played_by_computer = 0
 var restart_button
 var lock_panel 
 var can_click = true
+var game_over = false
 
 func _ready() -> void:
 	main_ref = $".."
@@ -41,6 +43,7 @@ func _ready() -> void:
 	computer_cards_won_ref = $"../computer_cards_won"
 	restart_button = $"../ResetButton"
 	lock_panel = $"../LockPanel"
+	x_cursor = load("res://Assets/close.png")
 	$Trade.disabled = true
 	$Trade.visible = false
 	$Keep.disabled = true
@@ -112,6 +115,7 @@ func _on_keep_pressed():
 	play_hand()
 	
 func play_hand():
+	can_click = false
 	$Trade.disabled = true
 	$Trade.visible = false
 	$Keep.disabled = true
@@ -237,6 +241,7 @@ func play_hand():
 	end_of_hand_calculation()
 	
 func end_of_hand_calculation():
+	
 	# The total calculation of points earned and how many rounds won is calculated
 	for i in range(3):  # Simplify repeated calls using a loop
 		card_manager_ref.cards_in_hand[i].get_node("AnimationPlayer").play_backwards("card_flip")
@@ -347,7 +352,7 @@ func end_of_hand_calculation():
 	numb_of_jokers_played_by_computer = 0
 	joker_card_played_by_player.clear()
 	joker_card_played_by_computer.clear()
-
+	
 	win_or_shuffle()
 
 
@@ -355,7 +360,6 @@ func end_of_hand_calculation():
 func is_joker(card):
 	return card.card_value == 100
 	print(is_joker(card))
-	
 
 func end_of_hand_draw():
 	#each "player" gets cards back
@@ -376,33 +380,36 @@ func end_of_hand_draw():
 func win_or_shuffle():
 	
 	if player_hand_ref.player_hand.size() < 3:
+		can_click = false
 		if !deck_ref.player_won_deck:
 			main_ref.get_node("peek_text").text = "You Lose"
 			lock_ui()
 			can_click = false
+			game_over = true
 		else:
-			await  deck_ref.shuffle_player_won_deck()
-			can_click = true
+			deck_ref.shuffle_player_won_deck()
 	if computer_hand_ref.computer_hand.size() < 3:
+		can_click = false
 		if !deck_ref.computer_won_deck:
 			main_ref.get_node("peek_text").text = "Computer Loses"
 			lock_ui()
 			can_click = false
+			game_over = true
 		else:
-			await deck_ref.shuffle_computer_won_deck()
-			can_click = true
-	print(player_hand_ref.player_hand)
-	print(computer_hand_ref.computer_hand)
-	
-
-
+			deck_ref.shuffle_computer_won_deck()
+	Input.set_custom_mouse_cursor(x_cursor, 0, Vector2(64, 64))
+	await delayed_function(1.0)
+	Input.set_custom_mouse_cursor(null)
+	if game_over:
+		can_click = false
+	else:
+		can_click = true
 
 func lock_ui():
 	lock_panel.visible = true 
 	lock_panel.z_index = 10
 	restart_button.visible = true
 	restart_button.z_index = 11
-	can_click = false
 
 
 

@@ -29,7 +29,7 @@ var player_deck = [
 
 var card_db_ref
 var cards_in_hand
-
+var card_ref
 var player_won_deck = []
 var computer_won_deck = []
 
@@ -98,6 +98,8 @@ func replace_card(trade_slot):
 	var card_scene = preload(CARD_SCENE_PATH)
 	var new_card = card_scene.instantiate()
 	var card_img_path = str("res://Assets/cards/"+card_drawn_name+".png")
+	var new_position = trade_slot.position
+	$"../PlayerHand".add_card_to_slot(new_card, new_position, CARD_DRAW_SPEED)
 	new_card.get_node("CardImg").texture = load(card_img_path)
 	new_card.get_node("card_name").text = str(card_db_ref.CARDS[card_drawn_name][0])
 	new_card.get_node("card_name").text = str(card_db_ref.CARDS[card_drawn_name][0])
@@ -106,9 +108,6 @@ func replace_card(trade_slot):
 	new_card.name = "card"
 	$"../CardManager".add_child(new_card)
 #animate the card being drawn from deck to card slot / trade position 
-
-
-
 	if trade_slot.card_in_the_slot:
 		# Find the index of the current card in cards_in_hand array
 		var index = cards_in_hand.find(trade_slot.card_in_the_slot)
@@ -126,8 +125,9 @@ func replace_card(trade_slot):
 	# Insert the new card at the same index in cards_in_hand
 		cards_in_hand.insert(index, new_card)
 		trade_slot.card_in_the_slot = new_card  # Set the new card as the slot's card
-		new_card.position = trade_slot.position  # Place the new card in the slot's position
+		new_card.position = trade_slot.position
 		new_card.get_node("Area2D/CollisionShape2D").disabled = true
+		$"../PlayerHand".add_card_to_slot(new_card, new_card.position, CARD_DRAW_SPEED)
 		#print(cards_in_hand)  # Disable collision if needed
 
 func shuffle_player_won_deck():
@@ -155,7 +155,8 @@ func shuffle_player_won_deck():
 			card_drawn.get_node("Area2D/CollisionShape2D").disabled = false
 		else:
 			print("Warning: Card does not have the expected node structure!")
-	print(player_won_deck)
+	#print(player_won_deck)
+	
 func shuffle_computer_won_deck():
 	# Shuffle the deck
 	computer_won_deck.shuffle()
@@ -181,4 +182,4 @@ func shuffle_computer_won_deck():
 			card_drawn.get_node("Area2D/CollisionShape2D").disabled = true
 		else:
 			print("Warning: Card does not have the expected node structure!")
-	print(computer_won_deck)
+	#print(computer_won_deck)

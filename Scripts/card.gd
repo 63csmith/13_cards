@@ -21,3 +21,7 @@ func _on_area_2d_mouse_exited():
 	emit_signal("hovered_off", self)
 	#print("Out of Hover")
 	#pass # Replace with function body.
+
+func animate_card_to_position(card, new_position, speed):
+	var tween = get_tree().create_tween()
+	tween.tween_property(card, "position", new_position, speed)

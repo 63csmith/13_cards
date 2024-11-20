@@ -21,6 +21,11 @@ func _ready() -> void:
 		#new_card.name = "card"
 		#add_card_to_hand(new_card, DEFAULT_CARD_SPEED)
 
+func add_card_to_slot(card, slot_position, speed):
+	# Animate the card to the specified slot position
+	animate_card_to_position(card, slot_position, speed)
+	card.starting_position = slot_position  # Update card's starting position
+
 func add_card_to_hand(card, speed):
 	if card not in player_hand:
 		player_hand.insert(0, card)
