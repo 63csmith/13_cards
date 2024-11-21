@@ -388,6 +388,9 @@ func win_or_shuffle():
 			game_over = true
 		else:
 			deck_ref.shuffle_player_won_deck()
+			Input.set_custom_mouse_cursor(x_cursor, 0, Vector2(64, 64))
+			await delayed_function(1.0)
+			Input.set_custom_mouse_cursor(null)
 	if computer_hand_ref.computer_hand.size() < 3:
 		can_click = false
 		if !deck_ref.computer_won_deck:
@@ -397,9 +400,9 @@ func win_or_shuffle():
 			game_over = true
 		else:
 			deck_ref.shuffle_computer_won_deck()
-	Input.set_custom_mouse_cursor(x_cursor, 0, Vector2(64, 64))
-	await delayed_function(1.0)
-	Input.set_custom_mouse_cursor(null)
+			Input.set_custom_mouse_cursor(x_cursor, 0, Vector2(64, 64))
+			await delayed_function(1.0)
+			Input.set_custom_mouse_cursor(null)
 	if game_over:
 		can_click = false
 	else:
