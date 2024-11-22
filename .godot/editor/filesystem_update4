@@ -4,4 +4,3 @@ res://scenes/card_slot.tscn
 res://scenes/computer_card_slot.tscn
 res://scenes/deck.tscn
 res://player_cards_won.tscn
-res://Scripts/InputManager.gd
